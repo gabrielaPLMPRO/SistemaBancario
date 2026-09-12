@@ -1,0 +1,11 @@
+bin/negocio/Cliente.class
+bin/negocio/ContaCorrente.class
+bin/negocio/GerenciadoraClientes.class
+bin/negocio/GerenciadoraContas.class
+bin/negocio/IdadeNaoPermitidaException.class
+bin/negocio/Main.class
+bin/.classpath
+bin/.project
+bin/negocio/.gitignore
+src/.classpath
+src/.project
