@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Main {
 
-	static GerenciadoraClientes gerClientes;
-	static GerenciadoraContas gerContas;
+	private static GerenciadoraClientes gerClientes;
+	private static GerenciadoraContas gerContas;
 	
 	public static void main(String[] args) {
 		
@@ -20,13 +20,13 @@ public class Main {
 			
 			printMenu();
 			
-			int opcao = sc.nextInt();
+			int opcao = leituraInt(sc);
 			
 			switch (opcao) {
 			// Consultar por um cliente
 			case 1:
 				System.out.print("Digite o ID do cliente: ");
-				int idCliente = sc.nextInt();
+				int idCliente = leituraInt(sc);
 				Cliente cliente = gerClientes.pesquisaCliente(idCliente);
 				
 				if(cliente != null)
@@ -37,10 +37,39 @@ public class Main {
 				pulalinha();
 				break;
 
-			// Consultar por uma conta corrente
+				//cadastrar um cliente
 			case 2:
+				System.out.print("Digite o ID do cliente: ");
+				int idClienteCadastro = leituraInt(sc);
+				System.out.print("Digite o nome do cliente: ");
+				String nomeCliente = leituraTexto(sc);
+				System.out.print("Digite a idade do cliente: ");
+				int idadeCliente = leituraInt(sc);
+				System.out.print("Digite o email do cliente: ");
+				String emailCliente = leituraTexto(sc);
+				System.out.print("Digite o ID da conta corrente do cliente: ");
+				int idContaCliente = leituraInt(sc);
+				try {
+					gerClientes.validaClienteNaoDuplicado(idClienteCadastro);
+					gerContas.validaContaNaoDuplicada(idContaCliente);
+					gerClientes.validaIdade(idadeCliente);
+
+					Cliente novoCliente = new Cliente(idClienteCadastro, nomeCliente, idadeCliente, emailCliente, idContaCliente, true);
+					gerClientes.adicionaCliente(novoCliente);
+					System.out.println("Cliente cadastrado com sucesso!");
+				} catch (ClienteJaExisteException e) {
+					System.out.println(e.getMessage());
+				} catch (ContaJaExisteException e) {
+					System.out.println(e.getMessage());
+				} catch (IdadeNaoPermitidaException e) {
+					System.out.println(e.getMessage());
+				}
+
+				pulalinha();
+				break;
+			case 3:
 				System.out.print("Digite o ID da conta: ");
-				int idConta = sc.nextInt();
+				int idConta = leituraInt(sc);
 				ContaCorrente conta = gerContas.pesquisaConta(idConta);
 				
 				if(conta != null)
@@ -52,10 +81,10 @@ public class Main {
 				break;
 
 			// Ativar um cliente
-			case 3:
+			case 4:
 				
 				System.out.print("Digite o ID do cliente: ");
-				int idCliente2 = sc.nextInt();
+				int idCliente2 = leituraInt(sc);
 				Cliente cliente2 = gerClientes.pesquisaCliente(idCliente2);
 				
 				if(cliente2 != null){
@@ -69,10 +98,10 @@ public class Main {
 				break;
 				
 			// Desativar um cliente
-			case 4:
+			case 5:
 				
 				System.out.print("Digite o ID do cliente: ");
-				int idCliente3 = sc.nextInt();
+				int idCliente3 = leituraInt(sc);
 				Cliente cliente3 = gerClientes.pesquisaCliente(idCliente3);
 				
 				if(cliente3 != null){
@@ -86,7 +115,7 @@ public class Main {
 				break;
 			
 			// Sair
-			case 5:
+			case 6:
 				continua = false;
 				System.out.println("################# Sistema encerrado #################");
 				break;
@@ -106,6 +135,20 @@ public class Main {
 		
 	}
 
+	private static int leituraInt(Scanner sc) {
+		while (true) {
+			try {
+				return Integer.parseInt(sc.nextLine().trim());
+			} catch (NumberFormatException e) {
+				System.out.println("Entrada inválida. Digite um número inteiro.");
+			}
+		}
+	}
+
+	private static String leituraTexto(Scanner sc) {
+		return sc.nextLine();
+	}
+
 	private static void pulalinha() {
 		System.out.println("\n");
 	}
@@ -117,10 +160,11 @@ public class Main {
 		
 		System.out.println("O que voc� deseja fazer? \n");
 		System.out.println("1) Consultar por um cliente");
-		System.out.println("2) Consultar por uma conta corrente");
-		System.out.println("3) Ativar um cliente");
-		System.out.println("4) Desativar um cliente");
-		System.out.println("5) Sair");
+		System.out.println("2) Cadastrar um cliente");
+		System.out.println("3) Consultar por uma conta corrente");
+		System.out.println("4) Ativar um cliente");
+		System.out.println("5) Desativar um cliente");
+		System.out.println("6) Sair");
 		System.out.println();
 		
 	}
