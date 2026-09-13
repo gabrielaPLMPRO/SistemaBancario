@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 bin/negocio/Cliente.class
 bin/negocio/ContaCorrente.class
 bin/negocio/GerenciadoraClientes.class
@@ -11,6 +12,8 @@ bin/negocio/.gitignore
 src/.classpath
 src/.project
 =======
+=======
+>>>>>>> testes
 bin/
 *.class
 
@@ -27,4 +30,7 @@ bin/
 *.ear
 *.log
 
+<<<<<<< HEAD
+>>>>>>> testes
+=======
 >>>>>>> testes

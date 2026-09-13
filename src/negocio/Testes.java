@@ -63,4 +63,12 @@ public class Testes {
         gerContas.validaContaNaoDuplicada(1);
     }
 
+    @Test  
+        public void TransferenciaEntreContas() throws Exception {
+        List<ContaCorrente> contas = new ArrayList<>();
+        contas.add(new ContaCorrente(1, 1000, true));
+        contas.add(new ContaCorrente(2, 500, true));
+        
+    }
+
 }
