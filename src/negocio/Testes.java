@@ -1,5 +1,6 @@
 package negocio;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -63,12 +64,19 @@ public class Testes {
         gerContas.validaContaNaoDuplicada(1);
     }
 
-    @Test  
-        public void TransferenciaEntreContas() throws Exception {
+    //TESTES DO RF12 TRANSFERÊNCIA ENTRE CONTAS
+    //O teste garante que, ao transferir um valor menor ou igual ao saldo da conta de origem, a transferência é bem-sucedida.
+    @Test
+    public void TransferenciaEntreContas() throws Exception {
         List<ContaCorrente> contas = new ArrayList<>();
-        contas.add(new ContaCorrente(1, 1000, true));
-        contas.add(new ContaCorrente(2, 500, true));
-        
+        contas.add(new ContaCorrente(1, 100, true));
+        contas.add(new ContaCorrente(2, 50, true));
+
+        GerenciadoraContas gerContas = new GerenciadoraContas(contas);
+
+        assertTrue(gerContas.transfereValor(1, 30, 2));
+        assertEquals(70.0, gerContas.pesquisaConta(1).getSaldo(), 0.01);
+        assertEquals(80.0, gerContas.pesquisaConta(2).getSaldo(), 0.01);
     }
 
 }

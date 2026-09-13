@@ -115,8 +115,22 @@ public class Main {
 				pulalinha();
 				break;
 			
-			// Sair
+			//Transferir dinheiro entre contas
 			case 6:
+				System.out.print("Digite o ID da conta de origem: ");
+				int idContaOrigem = leituraInt(sc);
+				System.out.print("Digite o ID da conta de destino: ");
+				int idContaDestino = leituraInt(sc);
+				System.out.print("Digite o valor a ser transferido: ");
+				double valor = Double.parseDouble(sc.nextLine().trim());
+				gerContas.transfereValor(idContaOrigem, valor, idContaDestino);
+				pulalinha();
+				break;
+
+			
+			
+				// Sair
+			case 7:
 				continua = false;
 				System.out.println("################# Sistema encerrado #################");
 				break;
@@ -165,7 +179,8 @@ public class Main {
 		System.out.println("3) Consultar por uma conta corrente");
 		System.out.println("4) Ativar um cliente");
 		System.out.println("5) Desativar um cliente");
-		System.out.println("6) Sair");
+		System.out.println("6) Transferir dinheiro entre contas");
+		System.out.println("7) Sair");
 		System.out.println();
 		
 	}
@@ -180,8 +195,8 @@ public class Main {
 		List<Cliente> clientesDoBanco = new ArrayList<>();
 		
 		// criando e inserindo duas contas na lista de contas correntes do banco
-		ContaCorrente conta01 = new ContaCorrente(1, 0, true);
-		ContaCorrente conta02 = new ContaCorrente(2, 0, true);
+		ContaCorrente conta01 = new ContaCorrente(1, 500, true);
+		ContaCorrente conta02 = new ContaCorrente(2, 500, true);
 		contasDoBanco.add(conta01);
 		contasDoBanco.add(conta02);
 		
