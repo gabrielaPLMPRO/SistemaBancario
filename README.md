@@ -2,8 +2,8 @@
 
 # TDD
 
-# 2. Cadastrar Usuario
-  Neste RF acabei fazendo os metodos e Exceptions necessarios e depois implementei os testes, ou seja, nao pratiquei TDD de forma correta, mas a fim de suprir esta necessidade eu comentei no codigo os metodos criados e rodei os testes para seguir o fluxo correto do TDD: 
+# RF2 Cadastrar Usuario / RF9 Cadastro de Conta Corrente / RF3 Validar Idade 
+  NesteS RFF acabei fazendo os metodos e Exceptions necessarios e depois implementei os testes, ou seja, nao pratiquei TDD de forma correta, mas a fim de suprir esta necessidade eu comentei no codigo os metodos criados e rodei os testes para seguir o fluxo correto do TDD: 
   # Metodos que verificam se o id do cliente é duplicado e se a idade esta dentro do intervalo correto:
   <img width="675" height="325" alt="image" src="https://github.com/user-attachments/assets/f4afe3e8-4ae6-4922-ab2e-ccb20610f277" />
 
