@@ -20,4 +20,5 @@
 # Compilando testes e testes aprovados: (GREEN): 
 <img width="550" height="229" alt="image" src="https://github.com/user-attachments/assets/3d857c75-7fcd-4be4-8cfb-c4309f742985" />
 
-Não houve necessidade de REFACTOR neste caso.
+# Tive de alterar a MAIN pois nao estava sendo construido o objeto da conta corrente (REFACTOR).
+<img width="651" height="24" alt="image" src="https://github.com/user-attachments/assets/ce30ff27-1b82-49f7-8322-1adc41837a95" />
