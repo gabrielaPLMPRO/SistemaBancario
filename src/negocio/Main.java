@@ -56,6 +56,7 @@ public class Main {
 
 					Cliente novoCliente = new Cliente(idClienteCadastro, nomeCliente, idadeCliente, emailCliente, idContaCliente, true);
 					gerClientes.adicionaCliente(novoCliente);
+					gerContas.adicionaConta(new ContaCorrente(idContaCliente, 0, true));	
 					System.out.println("Cliente cadastrado com sucesso!");
 				} catch (ClienteJaExisteException e) {
 					System.out.println(e.getMessage());

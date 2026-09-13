@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 bin/negocio/Cliente.class
 bin/negocio/ContaCorrente.class
 bin/negocio/GerenciadoraClientes.class
@@ -9,3 +10,21 @@ bin/.project
 bin/negocio/.gitignore
 src/.classpath
 src/.project
+=======
+bin/
+*.class
+
+# Arquivos de configuração local da IDE
+.classpath
+.project
+.settings/
+.idea/
+.DS_Store
+
+# Saídas de compilação e ferramentas Java
+*.jar
+*.war
+*.ear
+*.log
+
+>>>>>>> testes
