@@ -22,3 +22,24 @@
 
 # Tive de alterar a MAIN pois nao estava sendo construido o objeto da conta corrente (REFACTOR).
 <img width="651" height="24" alt="image" src="https://github.com/user-attachments/assets/ce30ff27-1b82-49f7-8322-1adc41837a95" />
+
+#RF12 Transferir valor entre contas
+Construi um teste para a transferencia entre contas, ele roda e aparentemente nao causa nenhum erro, porem eu ainda nao implementei a funcao no sistema, o metodo apenas existe (GREEN)
+<img width="1215" height="442" alt="image" src="https://github.com/user-attachments/assets/08b5e11f-447b-4aaf-ac45-d71e90bfa05c" />
+
+
+
+# Codei o case 6: a transferencia no main com as entradas fornecidas (REFACTOR)
+<img width="576" height="226" alt="image" src="https://github.com/user-attachments/assets/d716ff52-2352-4d0e-8c41-a602516e2a9b" />
+
+# Fiz um teste unitario, modifiquei o valor nas contas para testar o sistema de forma manual: (REFACTOR)
+<img width="634" height="127" alt="image" src="https://github.com/user-attachments/assets/daecbd5c-f512-4e88-803b-02976b1faa0d" />
+<img width="332" height="271" alt="image" src="https://github.com/user-attachments/assets/a66393b9-ec03-411e-ae7d-81b9d3d7183d" />
+<img width="292" height="241" alt="image" src="https://github.com/user-attachments/assets/6211ac37-7480-4584-a69f-5fcf4ffa3540" />
+
+# Finalmente rodei os testes ja montados e com a refatoracao do main: (GREEN)
+<img width="969" height="285" alt="image" src="https://github.com/user-attachments/assets/08bd778d-7fa3-436e-9249-498f5c5ebd8c" />
+<img width="524" height="80" alt="image" src="https://github.com/user-attachments/assets/e412443e-aa44-4465-983f-de020888f42c" />
+
+
+
