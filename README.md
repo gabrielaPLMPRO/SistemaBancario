@@ -33,7 +33,8 @@ Construi um teste para a transferencia entre contas, ele roda e aparentemente na
 <img width="576" height="226" alt="image" src="https://github.com/user-attachments/assets/d716ff52-2352-4d0e-8c41-a602516e2a9b" />
 
 # Fiz um teste unitario, modifiquei o valor nas contas para testar o sistema de forma manual: (REFACTOR)
-<img width="634" height="127" alt="image" src="https://github.com/user-attachments/assets/daecbd5c-f512-4e88-803b-02976b1faa0d" />
+<img width="604" height="115" alt="image" src="https://github.com/user-attachments/assets/6231b400-eafa-48dd-a64f-010d7e218766" />
+
 <img width="332" height="271" alt="image" src="https://github.com/user-attachments/assets/a66393b9-ec03-411e-ae7d-81b9d3d7183d" />
 <img width="292" height="241" alt="image" src="https://github.com/user-attachments/assets/6211ac37-7480-4584-a69f-5fcf4ffa3540" />
 
