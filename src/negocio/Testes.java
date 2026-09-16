@@ -103,4 +103,17 @@ public class Testes {
         assertEquals(100.0, gerContas.pesquisaConta(1).getSaldo(), 0.01);
         assertEquals(50.0, gerContas.pesquisaConta(2).getSaldo(), 0.01);
     }
+
+    @Test
+    public void naoDeveTransferirValorNegativo() {
+        List<ContaCorrente> contas = new ArrayList<>();
+        contas.add(new ContaCorrente(1, 100, true));
+        contas.add(new ContaCorrente(2, 50, true));
+
+        GerenciadoraContas gerContas = new GerenciadoraContas(contas);
+
+        assertFalse(gerContas.transfereValor(1, -30, 2));
+        assertEquals(100.0, gerContas.pesquisaConta(1).getSaldo(), 0.01);
+        assertEquals(50.0, gerContas.pesquisaConta(2).getSaldo(), 0.01);
+    }
 }
