@@ -40,6 +40,7 @@ public class GerenciadoraClientes {
 
 	/**
 	 * Adiciona um novo cliente � lista de clientes do banco.
+	 * 
 	 * @param novoCliente novo cliente a ser adicionado
 	 */
 	public void adicionaCliente(Cliente novoCliente) {
@@ -48,7 +49,8 @@ public class GerenciadoraClientes {
 
 	/**
 	 * Remove cliente da lista de clientes do banco.
-	 * @param idCliente ID do cliente a ser removido 
+	 * 
+	 * @param idCliente ID do cliente a ser removido
 	 * @return true se o cliente foi removido. False, caso contr�rio.
 	 */
 	public boolean removeCliente(int idCliente) {
@@ -68,8 +70,9 @@ public class GerenciadoraClientes {
 
 	/**
 	 * Informa se um determinado cliente est� ativo ou n�o.
+	 * 
 	 * @param idCliente ID do cliente cujo status ser� verificado
-	 * @return true se o cliente est� ativo. False, caso contr�rio. 
+	 * @return true se o cliente est� ativo. False, caso contr�rio.
 	 */
 	public boolean clienteAtivo(int idCliente) {
 		boolean clienteAtivo = false;
@@ -95,6 +98,7 @@ public class GerenciadoraClientes {
 
 	/**
 	 * Valida se o ID do cliente n�o est� duplicado.
+	 * 
 	 * @param idCliente id do cliente a ser validado
 	 */
 	public void validaClienteNaoDuplicado(int idCliente) throws ClienteJaExisteException {
@@ -105,6 +109,7 @@ public class GerenciadoraClientes {
 
 	/**
 	 * Valida se a idade do cliente est� dentro do intervalo permitido (18 - 65).
+	 * 
 	 * @param idade a idade do poss�vel novo cliente
 	 */
 	public boolean validaIdade(int idade) throws IdadeNaoPermitidaException {
@@ -113,5 +118,12 @@ public class GerenciadoraClientes {
 			throw new IdadeNaoPermitidaException(IdadeNaoPermitidaException.MSG_IDADE_INVALIDA);
 
 		return true;
+	}
+
+	public void cadastraCliente(Cliente novoCliente)
+			throws ClienteJaExisteException {
+
+		validaClienteNaoDuplicado(novoCliente.getId());
+		adicionaCliente(novoCliente);
 	}
 }
