@@ -2,6 +2,7 @@ package negocio.BDD;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +29,16 @@ public class RF08 {
 
         assertNotNull(contaEncontrada);
         assertEquals(1, contaEncontrada.getId());
+    }
+
+    @Test
+    public void deveRetornarNullParaContaInexistente() {
+        List<ContaCorrente> contas = new ArrayList<ContaCorrente>();
+
+        GerenciadoraContas gerContas = new GerenciadoraContas(contas);
+
+        ContaCorrente contaEncontrada = gerContas.pesquisaConta(99);
+
+        assertNull(contaEncontrada);
     }
 }
