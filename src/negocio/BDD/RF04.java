@@ -14,16 +14,14 @@ public class RF04 {
 
     @Test
     public void deveAtivarClienteInativo() {
+
         List<Cliente> clientes = new ArrayList<Cliente>();
 
-        Cliente cliente = new Cliente(
-                1, "Maria Silva", 30,
-                "maria@email.com", 1, false);
+        Cliente cliente = new Cliente(1, "Maria Silva", 30, "maria@email.com", 1, false);
 
         clientes.add(cliente);
 
-        GerenciadoraClientes gerClientes =
-                new GerenciadoraClientes(clientes);
+        GerenciadoraClientes gerClientes = new GerenciadoraClientes(clientes);
 
         gerClientes.ativaCliente(1);
 

@@ -127,4 +127,15 @@ public class GerenciadoraClientes {
 		validaIdade(novoCliente.getIdade());
 		adicionaCliente(novoCliente);
 	}
+
+	public boolean ativaCliente(int idCliente) {
+    Cliente cliente = pesquisaCliente(idCliente);
+
+    if (cliente != null) {
+        cliente.setAtivo(true);
+        return true;
+    }
+
+    return false;
+}
 }
