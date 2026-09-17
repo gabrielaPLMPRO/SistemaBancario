@@ -1,4 +1,4 @@
-package TDD;
+package negocio.TDD;
 
 import static org.junit.Assert.assertEquals;
 
