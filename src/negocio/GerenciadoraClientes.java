@@ -129,13 +129,24 @@ public class GerenciadoraClientes {
 	}
 
 	public boolean ativaCliente(int idCliente) {
-    Cliente cliente = pesquisaCliente(idCliente);
+		Cliente cliente = pesquisaCliente(idCliente);
 
-    if (cliente != null) {
-        cliente.setAtivo(true);
-        return true;
-    }
+		if (cliente != null) {
+			cliente.setAtivo(true);
+			return true;
+		}
 
-    return false;
-}
+		return false;
+	}
+
+	public boolean desativaCliente(int idCliente) {
+		Cliente cliente = pesquisaCliente(idCliente);
+
+		if (cliente != null) {
+			cliente.setAtivo(false);
+			return true;
+		}
+
+		return false;
+	}
 }
