@@ -16,6 +16,7 @@ public class GerenciadoraContas {
 
 	/**
 	 * Retorna uma lista com todas as contas do banco.
+	 * 
 	 * @return lista com todas as contas do banco
 	 */
 	public List<ContaCorrente> getContasDoBanco() {
@@ -24,20 +25,22 @@ public class GerenciadoraContas {
 
 	/**
 	 * Pesquisa por uma conta a partir do seu ID.
+	 * 
 	 * @param idConta id da conta a ser pesquisada
 	 * @return a conta pesquisada ou null, caso n�o seja encontrada
 	 */
-	public ContaCorrente pesquisaConta (int idConta) {
+	public ContaCorrente pesquisaConta(int idConta) {
 
 		for (ContaCorrente contaCorrente : contasDoBanco) {
-			if(contaCorrente.getId() == idConta)
+			if (contaCorrente.getId() == idConta)
 				return contaCorrente;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Valida se o ID da conta corrente n�o est� duplicado.
+	 * 
 	 * @param idConta id da conta a ser validado
 	 */
 	public void validaContaNaoDuplicada(int idConta) throws ContaJaExisteException {
@@ -48,75 +51,88 @@ public class GerenciadoraContas {
 
 	/**
 	 * Adiciona uma nova conta � lista de contas do banco.
+	 * 
 	 * @param novaConta nova conta a ser adicionada
 	 */
-	public void adicionaConta (ContaCorrente novaConta) {
+	public void adicionaConta(ContaCorrente novaConta) {
 		this.contasDoBanco.add(novaConta);
 	}
 
 	/**
 	 * Remove conta da lista de contas do banco.
-	 * @param idConta ID da conta a ser removida 
+	 * 
+	 * @param idConta ID da conta a ser removida
 	 * @return true se a conta foi removida. False, caso contr�rio.
 	 */
-	public boolean removeConta (int idConta) {
-		
+	public boolean removeConta(int idConta) {
+
 		boolean contaRemovida = false;
-		
+
 		for (int i = 0; i < contasDoBanco.size(); i++) {
 			ContaCorrente conta = contasDoBanco.get(i);
-			if(conta.getId() == idConta){
+			if (conta.getId() == idConta) {
 				contasDoBanco.remove(i);
 				break;
 			}
 		}
-		
+
 		return contaRemovida;
 	}
 
 	/**
 	 * Informa se uma determinada conta est� ativa ou n�o.
+	 * 
 	 * @param idConta ID da conta cujo status ser� verificado
-	 * @return true se a conta est� ativa. False, caso contr�rio. 
+	 * @return true se a conta est� ativa. False, caso contr�rio.
 	 */
-	public boolean contaAtiva (int idConta) {
-		
+	public boolean contaAtiva(int idConta) {
+
 		boolean contaAtiva = false;
-		
+
 		for (int i = 0; i < contasDoBanco.size(); i++) {
 			ContaCorrente conta = contasDoBanco.get(i);
-			if(conta.getId() == idConta)
-				if(conta.isAtiva()){
+			if (conta.getId() == idConta)
+				if (conta.isAtiva()) {
 					contaAtiva = true;
 					break;
 				}
 		}
-		
+
 		return contaAtiva;
 	}
-	
+
 	/**
 	 * Transfere um determinado valor de uma conta Origem para uma conta Destino.
 	 * Caso n�o haja saldo suficiente, o valor n�o ser� transferido.
 	 * 
-	 * @param idContaOrigem conta que ter� o valor deduzido
-	 * @param valor valor a ser transferido
+	 * @param idContaOrigem  conta que ter� o valor deduzido
+	 * @param valor          valor a ser transferido
 	 * @param idContaDestino conta que ter� o valor acrescido
 	 * @return true, se a transfer�ncia foi realizada com sucesso.
 	 */
-	public boolean transfereValor (int idContaOrigem, double valor, int idContaDestino) {
-		
+	public boolean transfereValor(int idContaOrigem, double valor, int idContaDestino) {
+
 		boolean sucesso = false;
-		
+
 		ContaCorrente contaOrigem = pesquisaConta(idContaOrigem);
 		ContaCorrente contaDestino = pesquisaConta(idContaDestino);
-		
-		if(valor > 0 && contaOrigem.getSaldo() >= valor){
+
+		if (valor > 0 && contaOrigem.getSaldo() >= valor) {
 			contaDestino.setSaldo(contaDestino.getSaldo() + valor);
 			contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
 			sucesso = true;
 		}
-	
+
 		return sucesso;
+	}
+
+	public boolean cadastraContaParaCliente(ContaCorrente novaConta, int idCliente, GerenciadoraClientes gerClientes)
+			throws ContaJaExisteException {
+
+		validaContaNaoDuplicada(novaConta.getId());
+
+		adicionaConta(novaConta);
+
+		return true;
 	}
 }
