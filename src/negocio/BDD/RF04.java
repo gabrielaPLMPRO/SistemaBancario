@@ -1,6 +1,7 @@
 package negocio.BDD;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +27,15 @@ public class RF04 {
         gerClientes.ativaCliente(1);
 
         assertTrue(gerClientes.clienteAtivo(1));
+    }
+
+    @Test
+    public void naoDeveAtivarClienteInexistente() {
+        
+        List<Cliente> clientes = new ArrayList<Cliente>();
+
+        GerenciadoraClientes gerClientes = new GerenciadoraClientes(clientes);
+
+        assertFalse(gerClientes.ativaCliente(99));
     }
 }
