@@ -2,6 +2,7 @@ package negocio.BDD;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class RF01 {
 
     @Test
     public void deveConsultarClienteExistente() {
-        
+
         List<Cliente> clientes = new ArrayList<>();
 
         Cliente clienteCadastrado = new Cliente(1, "Maria Silva", 30, "maria@email.com", 1, true);
@@ -30,5 +31,19 @@ public class RF01 {
         assertEquals(1, clienteEncontrado.getId());
         assertEquals("Maria Silva", clienteEncontrado.getNome());
         assertEquals("maria@email.com", clienteEncontrado.getEmail());
+    }
+
+    @Test
+    public void deveRetornarNullParaClienteInexistente() {
+
+        List<Cliente> clientes = new ArrayList<>();
+
+        clientes.add(new Cliente(1, "Maria Silva", 30, "maria@email.com", 1, true));
+
+        GerenciadoraClientes gerClientes = new GerenciadoraClientes(clientes);
+
+        Cliente clienteEncontrado = gerClientes.pesquisaCliente(99);
+
+        assertNull(clienteEncontrado);
     }
 }
