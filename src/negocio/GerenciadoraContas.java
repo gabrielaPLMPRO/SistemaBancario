@@ -129,6 +129,10 @@ public class GerenciadoraContas {
 	public boolean cadastraContaParaCliente(ContaCorrente novaConta, int idCliente, GerenciadoraClientes gerClientes)
 			throws ContaJaExisteException {
 
+		if (gerClientes.pesquisaCliente(idCliente) == null) {
+			return false;
+		}
+
 		validaContaNaoDuplicada(novaConta.getId());
 
 		adicionaConta(novaConta);
