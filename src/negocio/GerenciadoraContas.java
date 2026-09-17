@@ -119,5 +119,4 @@ public class GerenciadoraContas {
 	
 		return sucesso;
 	}
-	
 }
