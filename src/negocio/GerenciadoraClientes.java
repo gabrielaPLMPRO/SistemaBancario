@@ -121,9 +121,10 @@ public class GerenciadoraClientes {
 	}
 
 	public void cadastraCliente(Cliente novoCliente)
-			throws ClienteJaExisteException {
+			throws ClienteJaExisteException, IdadeNaoPermitidaException {
 
 		validaClienteNaoDuplicado(novoCliente.getId());
+		validaIdade(novoCliente.getIdade());
 		adicionaCliente(novoCliente);
 	}
 }
