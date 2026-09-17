@@ -2,6 +2,7 @@ package TDD;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,4 +34,17 @@ public class RF09 {
         assertEquals(novaConta, gerContas.pesquisaConta(2));
     }
 
+    @Test
+    public void naoDeveCadastrarContaParaClienteInexistente() throws Exception {
+
+        GerenciadoraClientes gerClientes = new GerenciadoraClientes(new ArrayList<Cliente>());
+
+        GerenciadoraContas gerContas = new GerenciadoraContas(new ArrayList<ContaCorrente>());
+
+        ContaCorrente novaConta = new ContaCorrente(2, 0, true);
+
+        assertFalse(gerContas.cadastraContaParaCliente(novaConta, 99, gerClientes));
+
+        assertEquals(0, gerContas.getContasDoBanco().size());
+    }
 }
