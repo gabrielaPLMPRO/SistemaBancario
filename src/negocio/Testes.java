@@ -11,6 +11,21 @@ import org.junit.Test;
 
 public class Testes {
 
+    // RF12
+    @Test
+    public void TransferenciaEntreContas() throws Exception {
+
+        List<ContaCorrente> contas = new ArrayList<>();
+        contas.add(new ContaCorrente(1, 100, true));
+        contas.add(new ContaCorrente(2, 50, true));
+
+        GerenciadoraContas gerContas = new GerenciadoraContas(contas);
+
+        assertTrue(gerContas.transfereValor(1, 30, 2));
+        assertEquals(70.0, gerContas.pesquisaConta(1).getSaldo(), 0.01);
+        assertEquals(80.0, gerContas.pesquisaConta(2).getSaldo(), 0.01);
+    }
+
     // TESTES DO RF3 VALIDAR IDADE DO CLIENTE
     // Espera que a idade 30 seja aceita e o método retorne true.
     @Test
