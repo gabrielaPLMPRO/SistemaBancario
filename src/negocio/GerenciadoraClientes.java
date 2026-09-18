@@ -75,18 +75,10 @@ public class GerenciadoraClientes {
 	 * @return true se o cliente est� ativo. False, caso contr�rio.
 	 */
 	public boolean clienteAtivo(int idCliente) {
-		boolean clienteAtivo = false;
 
-		for (int i = 0; i < clientesDoBanco.size(); i++) {
-			Cliente cliente = clientesDoBanco.get(i);
-			if (cliente.getId() == idCliente)
-				if (cliente.isAtivo()) {
-					clienteAtivo = true;
-					break;
-				}
-		}
+		Cliente cliente = pesquisaCliente(idCliente);
 
-		return clienteAtivo;
+		return cliente != null && cliente.isAtivo();
 	}
 
 	/**
