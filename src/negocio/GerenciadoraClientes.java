@@ -54,19 +54,16 @@ public class GerenciadoraClientes {
 	 * @return true se o cliente foi removido. False, caso contr�rio.
 	 */
 	public boolean removeCliente(int idCliente) {
-		boolean clienteRemovido = false;
+		
+    Cliente cliente = pesquisaCliente(idCliente);	
 
-		for (int i = 0; i < clientesDoBanco.size(); i++) {
-			Cliente cliente = clientesDoBanco.get(i);
-			if (cliente.getId() == idCliente) {
-				clientesDoBanco.remove(i);
-				clienteRemovido = true;
-				break;
-			}
-		}
+    if (cliente != null && !cliente.isAtivo()) {
+        clientesDoBanco.remove(cliente);
+        return true;
+    }
 
-		return clienteRemovido;
-	}
+    return false;
+}
 
 	/**
 	 * Informa se um determinado cliente est� ativo ou n�o.
