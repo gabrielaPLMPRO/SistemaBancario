@@ -114,9 +114,23 @@ public class Main {
 				
 				pulalinha();
 				break;
+
+			// Remover um cliente
+			case 6:
+				System.out.print("Digite o ID do cliente a ser removido: ");
+				int idClienteRemover = leituraInt(sc);
+				boolean removido = gerClientes.removeCliente(idClienteRemover);
+
+				if(removido)
+					System.out.println("Cliente removido com sucesso!");
+				else
+					System.out.println("Cliente n�o encontrado ou ativo!");
+				
+				pulalinha();
+				break;
 			
 			//Transferir dinheiro entre contas
-			case 6:
+			case 7:
 				System.out.print("Digite o ID da conta de origem: ");
 				int idContaOrigem = leituraInt(sc);
 				System.out.print("Digite o ID da conta de destino: ");
@@ -128,9 +142,18 @@ public class Main {
 				break;
 
 			
-			
+			case 8: // Remover uma conta corrente
+				System.out.print("Digite o ID da conta a ser removida: ");
+				int idContaRemover = leituraInt(sc);
+				boolean foiRemovido = gerContas.removeConta(idContaRemover);
+
+				if(foiRemovido)
+					System.out.println("Conta removida com sucesso!");
+				else
+					System.out.println("Conta n�o encontrada ou ativa!");
+				
 				// Sair
-			case 7:
+			case 9:
 				continua = false;
 				System.out.println("################# Sistema encerrado #################");
 				break;
@@ -179,9 +202,10 @@ public class Main {
 		System.out.println("3) Consultar por uma conta corrente");
 		System.out.println("4) Ativar um cliente");
 		System.out.println("5) Desativar um cliente");
-		System.out.println("6) Transferir dinheiro entre contas");
-		System.out.println("7) Remover uma conta corrente");
-		System.out.println("8) Sair");
+		System.out.println("6) Remover um cliente");
+		System.out.println("7) Transferir dinheiro entre contas");
+		System.out.println("8) Remover uma conta corrente");
+		System.out.println("9) Sair");
 		System.out.println();
 		
 	}
