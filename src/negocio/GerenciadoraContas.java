@@ -66,17 +66,15 @@ public class GerenciadoraContas {
 	 */
 	public boolean removeConta(int idConta) {
 
-		boolean contaRemovida = false;
+		ContaCorrente conta = pesquisaConta(idConta);
 
-		for (int i = 0; i < contasDoBanco.size(); i++) {
-			ContaCorrente conta = contasDoBanco.get(i);
-			if (conta.getId() == idConta) {
-				contasDoBanco.remove(i);
-				break;
-			}
+		if (conta != null && !conta.isAtiva()) {
+			this.contasDoBanco.remove(conta);
+			return true;
 		}
 
-		return contaRemovida;
+		return false;
+		
 	}
 
 	/**

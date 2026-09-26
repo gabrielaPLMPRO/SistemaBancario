@@ -180,7 +180,8 @@ public class Main {
 		System.out.println("4) Ativar um cliente");
 		System.out.println("5) Desativar um cliente");
 		System.out.println("6) Transferir dinheiro entre contas");
-		System.out.println("7) Sair");
+		System.out.println("7) Remover uma conta corrente");
+		System.out.println("8) Sair");
 		System.out.println();
 		
 	}
