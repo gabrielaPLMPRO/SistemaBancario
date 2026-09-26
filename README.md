@@ -1,48 +1,420 @@
-# SistemaBancario
+Claro! Como o arquivo é grande (39 páginas), abaixo está a versão em Markdown preservando a estrutura do documento (títulos, subtítulos e organização). Você pode copiar e colar diretamente no VS Code, Obsidian, GitHub ou qualquer editor Markdown.
 
-## `Link do documento:` [docx](https://docs.google.com/document/d/1kvClrGfjqpCmzTr6UTyZnJz3Nn5uLOAW/edit?usp=sharing&ouid=118073933180232509648&rtpof=true&sd=true)
+# Trabalho 1 — Teste de Software
 
-# TDD
+## TDD
 
-# RF2 Cadastrar Usuario / RF9 Cadastro de Conta Corrente / RF3 Validar Idade 
-  NesteS RFF acabei fazendo os metodos e Exceptions necessarios e depois implementei os testes, ou seja, nao pratiquei TDD de forma correta, mas a fim de suprir esta necessidade eu comentei no codigo os metodos criados e rodei os testes para seguir o fluxo correto do TDD: 
-  # Metodos que verificam se o id do cliente é duplicado e se a idade esta dentro do intervalo correto:
-  <img width="675" height="325" alt="image" src="https://github.com/user-attachments/assets/f4afe3e8-4ae6-4922-ab2e-ccb20610f277" />
+# RF02 – Cadastrar cliente
 
-# Metodo que verifica se o id da conta corrente é duplicado:
-<img width="617" height="146" alt="image" src="https://github.com/user-attachments/assets/121428a8-1414-48ec-a4f3-ecd84d8a362c" />
+Regra testada:
 
-# Resultado dos testes sem os metodos: (RED)
-<img width="551" height="231" alt="image" src="https://github.com/user-attachments/assets/b8978c36-e6b6-4e7e-ba53-2d30be7d7d3a" />
+O sistema deve cadastrar um cliente válido, desde que seu identificador ainda não esteja sendo utilizado por outro cliente.
 
-# Restaurando os métodos: 
-<img width="640" height="146" alt="image" src="https://github.com/user-attachments/assets/8a29f1f5-79f9-4a02-a423-764d53505cd0" />
-<img width="682" height="374" alt="image" src="https://github.com/user-attachments/assets/0d41cd28-4886-40a1-805e-1bd510ae3b1f" />
+## 🔴 RED
 
-# Compilando testes e testes aprovados: (GREEN): 
-<img width="550" height="229" alt="image" src="https://github.com/user-attachments/assets/3d857c75-7fcd-4be4-8cfb-c4309f742985" />
+Teste criado:
 
-# Tive de alterar a MAIN pois nao estava sendo construido o objeto da conta corrente (REFACTOR).
-<img width="651" height="24" alt="image" src="https://github.com/user-attachments/assets/ce30ff27-1b82-49f7-8322-1adc41837a95" />
+`deveCadastrarClienteValido()`
 
-# RF12 Transferir valor entre contas
-Construi um teste para a transferencia entre contas, ele roda e aparentemente nao causa nenhum erro, porem eu ainda nao implementei a funcao no sistema, o metodo apenas existe (GREEN)
-<img width="1215" height="442" alt="image" src="https://github.com/user-attachments/assets/08b5e11f-447b-4aaf-ac45-d71e90bfa05c" />
+Resultado obtido:
 
+O teste não compilou porque o método `cadastraCliente` ainda não existia na classe `GerenciadoraClientes`.
 
+Por que falhou?
 
-# Codei o case 6: a transferencia no main com as entradas fornecidas (REFACTOR)
-<img width="576" height="226" alt="image" src="https://github.com/user-attachments/assets/d716ff52-2352-4d0e-8c41-a602516e2a9b" />
+O teste foi criado primeiro para definir o comportamento esperado: validar a duplicidade do identificador e adicionar um cliente válido à lista de clientes do banco.
 
-# Fiz um teste unitario, modifiquei o valor nas contas para testar o sistema de forma manual: (REFACTOR)
-<img width="604" height="115" alt="image" src="https://github.com/user-attachments/assets/6231b400-eafa-48dd-a64f-010d7e218766" />
+## 🟢 GREEN
 
-<img width="332" height="271" alt="image" src="https://github.com/user-attachments/assets/a66393b9-ec03-411e-ae7d-81b9d3d7183d" />
-<img width="292" height="241" alt="image" src="https://github.com/user-attachments/assets/6211ac37-7480-4584-a69f-5fcf4ffa3540" />
+Alteração realizada:
 
-# Finalmente rodei os testes ja montados e com a refatoracao do main: (GREEN)
-<img width="969" height="285" alt="image" src="https://github.com/user-attachments/assets/08bd778d-7fa3-436e-9249-498f5c5ebd8c" />
-<img width="524" height="80" alt="image" src="https://github.com/user-attachments/assets/e412443e-aa44-4465-983f-de020888f42c" />
+Foi criado o método `cadastraCliente` na classe `GerenciadoraClientes`. O método verifica se o identificador do novo cliente já está cadastrado e, caso não esteja, adiciona o cliente à lista.
 
+Resultado:
 
+O teste `deveCadastrarClienteValido()` passou.
 
+## 🔵 REFACTOR
+
+Refatoração realizada:
+
+Não foi necessária.
+
+Justificativa:
+
+O método possui responsabilidade clara e reutiliza `validaClienteNaoDuplicado()` e `adicionaCliente()`.
+
+Resultado final:
+
+Todos os testes permaneceram aprovados.
+
+# RF03 – Validar idade do cliente
+
+Regra testada:
+
+O sistema não deve cadastrar clientes menores de 18 anos.
+
+## 🔴 RED
+
+Teste criado:
+
+`naoDeveCadastrarClienteMenorDeIdade()`
+
+Resultado obtido:
+
+A exceção `IdadeNaoPermitidaException` não foi lançada.
+
+Por que falhou?
+
+O método cadastrava o cliente sem validar a idade.
+
+## 🟢 GREEN
+
+Alteração realizada:
+
+O método passou a chamar `validaIdade()` antes do cadastro e declarar a exceção.
+
+Resultado:
+
+O teste passou.
+
+## 🔵 REFACTOR
+
+Não foi necessária refatoração.
+
+# RF09 – Cadastrar conta corrente
+
+Regra testada:
+
+Cadastrar conta apenas para clientes existentes e impedir identificadores duplicados.
+
+## 🔴 RED
+
+Teste criado:
+
+`deveCadastrarContaParaClienteExistente()`
+
+Resultado:
+
+O método `cadastraContaParaCliente()` não existia.
+
+## 🟢 GREEN
+
+Implementação:
+
+Foi criado o método que valida duplicidade e adiciona a conta.
+
+Resultado:
+
+Teste aprovado.
+
+## RF09 – Cliente inexistente
+
+Regra testada:
+
+Não permitir cadastro de conta para cliente inexistente.
+
+### 🔴 RED
+
+Teste:
+
+`naoDeveCadastrarContaParaClienteInexistente()`
+
+Resultado:
+
+O método retornava `true` e cadastrava a conta.
+
+### 🟢 GREEN
+
+Correção:
+
+Foi adicionada a verificação da existência do cliente.
+
+Resultado:
+
+Teste aprovado.
+
+### 🔵 REFACTOR
+
+Nenhuma alteração adicional.
+
+# RF12 – Transferir valores entre contas
+
+Regra testada:
+
+Aceitar apenas valores positivos e com saldo suficiente.
+
+## Caso 1 — Valor zero
+
+### 🔴 RED
+
+Teste:
+
+`naoDeveTransferirValorZero()`
+
+Resultado:
+
+Transferência de valor zero era aceita.
+
+### 🟢 GREEN
+
+Correção:
+
+A condição passou a exigir valor diferente de zero.
+
+## Caso 2 — Valor negativo
+
+### 🔴 RED
+
+Teste:
+
+`naoDeveTransferirValorNegativo()`
+
+Resultado:
+
+Valores negativos alteravam os saldos incorretamente.
+
+### 🟢 GREEN
+
+Correção:
+
+A regra passou para `valor > 0`.
+
+## Caso 3 — Saldo insuficiente
+
+Teste:
+
+`naoDeveTransferirQuandoSaldoForInsuficiente()`
+
+Resultado:
+
+Passou na primeira execução.
+
+### 🔵 REFACTOR
+
+Foi criado o método auxiliar `criaGerenciadoraParaTransferencia()` para eliminar repetição nos testes.
+
+# BDD
+
+# RF01 – Consultar cliente
+
+## Funcionalidade
+
+Consulta de cliente por identificador.
+
+## História
+
+> Como usuário do sistema bancário, quero consultar um cliente por seu identificador para visualizar seus dados.
+
+### Cenário 1 — Cliente existente
+
+Dado que existe um cliente com ID 1
+
+Quando consultar o ID 1
+
+Então o sistema retorna o cliente correspondente.
+
+Teste automatizado:
+
+`deveConsultarClienteExistente()`
+
+### Cenário 2 — Cliente inexistente
+
+Dado que não existe cliente com ID 99
+
+Quando consultar o ID 99
+
+Então o sistema retorna `null`.
+
+Teste automatizado:
+
+`deveRetornarNullParaClienteInexistente()`
+
+Resultado final: ambos os cenários passaram sem alterações no código.
+
+# RF04 – Ativar cliente
+
+## História
+
+> Como usuário, quero ativar um cliente para que ele fique ativo.
+
+### Cenário 1 — Ativar cliente inativo
+
+Teste: `deveAtivarClienteInativo()`
+
+* RED: método inexistente
+
+* GREEN: criação de `ativaCliente(int)`
+
+* Resultado: aprovado
+
+### Cenário 2 — Cliente inexistente
+
+Teste: `naoDeveAtivarClienteInexistente()`
+
+O método retorna `false` quando o cliente não existe.
+
+# RF05 – Desativar cliente
+
+## História
+
+> Como usuário, quero desativar um cliente para que ele fique inativo.
+
+### Cenário 1 — Cliente ativo
+
+Teste: `deveDesativarClienteAtivo()`
+
+* RED: método inexistente
+
+* GREEN: criação de `desativaCliente(int)`
+
+* Resultado: aprovado
+
+### Cenário 2 — Cliente inexistente
+
+Teste: `naoDeveDesativarClienteInexistente()`
+
+Retorna `false`.
+
+# RF08 – Consultar conta corrente
+
+## Funcionalidade
+
+Consulta de conta por identificador.
+
+### Cenário 1 — Conta existente
+
+Teste: `deveConsultarContaExistente()`
+
+Passou na primeira execução.
+
+### Cenário 2 — Conta inexistente
+
+Teste: `deveRetornarNullParaContaInexistente()`
+
+Retorna `null`.
+
+# DDD
+
+# RF06 – Verificar situação do cliente
+
+## Conceito de domínio
+
+Cliente e sua situação (ativo/inativo).
+
+### Regra de negócio
+
+Todo cliente possui uma situação própria.
+
+### Problema identificado
+
+`GerenciadoraClientes` verificava diretamente a situação do cliente.
+
+### Modelagem proposta
+
+* `Cliente` é responsável por informar seu estado (`isAtivo()`).
+
+* `GerenciadoraClientes` apenas localiza o cliente.
+
+### Resultado
+
+A responsabilidade foi delegada corretamente sem quebrar os testes.
+
+# RF07 – Remover cliente
+
+## Regra de negócio
+
+Um cliente só pode ser removido quando estiver inativo.
+
+### Problema
+
+Clientes ativos podiam ser removidos.
+
+### Modelagem
+
+* Localizar cliente
+
+* Verificar `isAtivo()`
+
+* Remover apenas se estiver inativo
+
+### Resultado
+
+O teste passou após a alteração.
+
+# RF10 – Verificar situação da conta corrente
+
+## Conceito de domínio
+
+Conta corrente e sua situação.
+
+### Modelagem proposta
+
+* `ContaCorrente` informa seu estado através de `isAtiva()`.
+
+* `GerenciadoraContas` apenas localiza a conta.
+
+### Resultado
+
+Os testes permaneceram aprovados.
+
+# RF11 – Remover conta
+
+## Regra de negócio
+
+Uma conta corrente somente pode ser removida quando estiver inativa.
+
+### Problema
+
+O método removia contas ativas.
+
+### Solução
+
+A remoção passou a verificar a situação da entidade `ContaCorrente`.
+
+### Resultado
+
+* Conta ativa → não remove
+
+* Conta inativa → remove com sucesso
+
+## Resultado Geral
+
+|
+Categoria
+
+|
+
+Requisitos
+
+|
+| --- | --- |
+|
+
+TDD
+
+|
+
+RF02, RF03, RF09, RF12
+
+|
+|
+
+BDD
+
+|
+
+RF01, RF04, RF05, RF08
+
+|
+|
+
+DDD
+
+|
+
+RF06, RF07, RF10, RF11
+
+|
+
+Todos os requisitos foram implementados e a suíte completa de testes permaneceu aprovada.
