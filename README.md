@@ -1,6 +1,8 @@
-Claro! Como o arquivo é grande (39 páginas), abaixo está a versão em Markdown preservando a estrutura do documento (títulos, subtítulos e organização). Você pode copiar e colar diretamente no VS Code, Obsidian, GitHub ou qualquer editor Markdown.
+
 
 # Trabalho 1 — Teste de Software
+
+# Link do docs: https://docs.google.com/document/d/1kvClrGfjqpCmzTr6UTyZnJz3Nn5uLOAW/edit?usp=sharing&ouid=113919473955249814578&rtpof=true&sd=true
 
 ## TDD
 
