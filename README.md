@@ -2,7 +2,7 @@
 
 # Trabalho 1 — Teste de Software
 
-# Link do docs: https://docs.google.com/document/d/1kvClrGfjqpCmzTr6UTyZnJz3Nn5uLOAW/edit?usp=sharing&ouid=113919473955249814578&rtpof=true&sd=true
+# [Link do docs](https://www.exemplo.com)
 
 ## TDD
 
