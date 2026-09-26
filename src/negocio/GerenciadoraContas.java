@@ -87,18 +87,13 @@ public class GerenciadoraContas {
 	 */
 	public boolean contaAtiva(int idConta) {
 
-		boolean contaAtiva = false;
+		ContaCorrente conta = pesquisaConta(idConta);
 
-		for (int i = 0; i < contasDoBanco.size(); i++) {
-			ContaCorrente conta = contasDoBanco.get(i);
-			if (conta.getId() == idConta)
-				if (conta.isAtiva()) {
-					contaAtiva = true;
-					break;
-				}
+		if (conta != null) {
+			return conta.isAtiva();
 		}
 
-		return contaAtiva;
+		return false;
 	}
 
 	/**
