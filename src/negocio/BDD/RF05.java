@@ -14,17 +14,17 @@ public class RF05 {
 
     @Test
     public void deveDesativarClienteAtivo() {
-        List<Cliente> clientes = new ArrayList<Cliente>();
+        List<Cliente> clientes = new ArrayList<Cliente>();  //cira a lista de clientes
 
-        Cliente cliente = new Cliente(1, "Maria Silva", 30, "maria@email.com", 1, true);
+        Cliente cliente = new Cliente(1, "Maria Silva", 30, "maria@email.com", 1, true); //instancia um cliente ativo   
 
-        clientes.add(cliente);
+        clientes.add(cliente); //adiciona o cliente na lista
 
-        GerenciadoraClientes gerClientes = new GerenciadoraClientes(clientes);
+        GerenciadoraClientes gerClientes = new GerenciadoraClientes(clientes); //instancia a gerenciadora de clientes com a lista de clientes   
 
-        gerClientes.desativaCliente(1);
+        gerClientes.desativaCliente(1); //desativa o cliente com id 1
 
-        assertFalse(gerClientes.clienteAtivo(1));
+        assertFalse(gerClientes.clienteAtivo(1)); //verifica se o cliente com id 1 está inativo
     }
 
     @Test
