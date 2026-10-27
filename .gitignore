@@ -16,7 +16,7 @@ src/.project
 >>>>>>> testes
 bin/
 *.class
-
+tmp/
 # Arquivos de configuração local da IDE
 .classpath
 .project
