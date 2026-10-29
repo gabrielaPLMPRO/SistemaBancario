@@ -1,0 +1,239 @@
+{
+  "data": "2026-10-29",
+  "encerramento_maven": "2026-10-29T18:20:25-03:00",
+  "commit_referencia": "cc1767583ee9b7c1d1e9246c078164a210223c34",
+  "branch": "evolucao/etapa-1-maven",
+  "alteracoes_ainda_sem_commit": true,
+  "ambiente": {
+    "jdk": "Eclipse Temurin 21.0.13+9",
+    "maven": "3.9.16",
+    "wrapper": "3.3.4",
+    "junit": "4.12"
+  },
+  "comando": "./mvnw.cmd -B -ntp -Dmaven.repo.local=<cache-temporario-local> clean verify",
+  "resultado": "BUILD SUCCESS",
+  "totais": {
+    "tests": 38,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "classes": [
+    {
+      "classe": "negocio.BDD.RF01",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.BDD.RF04",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.BDD.RF05",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.BDD.RF08",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.DDD.RF06",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.DDD.RF07",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.DDD.RF10",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.DDD.RF11",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.TDD.CaracterizacaoLegadoTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.TDD.RF02",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.TDD.RF03",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.TDD.RF09",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.TDD.RF12",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "classe": "negocio.Testes",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "jar_sha256": "9dc12e9e591f6d4c18fcbed68a7b568e4d835d4d993c92d744e3988ddbccd48c",
+  "fontes_preservados_na_movimentacao": [
+    {
+      "origem": "src/negocio/Cliente.java",
+      "destino": "backend/src/main/java/negocio/Cliente.java",
+      "sha256": "a8a5eebc1af40af994359cefb02ae1ab5bfa2c1c467b7a96c16d146895af30a5"
+    },
+    {
+      "origem": "src/negocio/ClienteJaExisteException.java",
+      "destino": "backend/src/main/java/negocio/ClienteJaExisteException.java",
+      "sha256": "ed712e1f5843a99d3e5151881781aa254002dbf364a283b5a2c43386efdec460"
+    },
+    {
+      "origem": "src/negocio/ContaCorrente.java",
+      "destino": "backend/src/main/java/negocio/ContaCorrente.java",
+      "sha256": "deb696c85095f796a077fd79ed571e06f4515e3db25e16dc08e4eb5f46682c2a"
+    },
+    {
+      "origem": "src/negocio/ContaJaExisteException.java",
+      "destino": "backend/src/main/java/negocio/ContaJaExisteException.java",
+      "sha256": "11474dfddcb627b32a3f6a8d035c6c0741427e41eacacb04f4607fe72489aaa5"
+    },
+    {
+      "origem": "src/negocio/GerenciadoraClientes.java",
+      "destino": "backend/src/main/java/negocio/GerenciadoraClientes.java",
+      "sha256": "0dfcd8fcb8f5fe28ba8468f792b1c607b4ec3212e22f60e9a35e79678be9f95d"
+    },
+    {
+      "origem": "src/negocio/GerenciadoraContas.java",
+      "destino": "backend/src/main/java/negocio/GerenciadoraContas.java",
+      "sha256": "95ed15b6d9f822626cf44bc9ecca2c8c29160e61aaba9b63b8f2c0712f88ab00"
+    },
+    {
+      "origem": "src/negocio/IdadeNaoPermitidaException.java",
+      "destino": "backend/src/main/java/negocio/IdadeNaoPermitidaException.java",
+      "sha256": "0f30f9800dcc61ccdd7f21f2c27ef0e58b5a1957a87af019b482720448bf1ca6"
+    },
+    {
+      "origem": "src/negocio/Main.java",
+      "destino": "backend/src/main/java/negocio/Main.java",
+      "sha256": "571ff44cd66a14529654fe7930bcca12d82f1f9ab5914dd61c1cfca18f43d3b0"
+    },
+    {
+      "origem": "src/negocio/Testes.java",
+      "destino": "backend/src/test/java/negocio/Testes.java",
+      "sha256": "ff37fe1289713aaa5e59be0caa0812d1f82a7ab67ef350e83a596353a28ea518"
+    },
+    {
+      "origem": "src/negocio/BDD/RF01.java",
+      "destino": "backend/src/test/java/negocio/BDD/RF01.java",
+      "sha256": "02ddf70e2b107500048019e068b81dda5c7d819399ba2d047c23320cdec15d35"
+    },
+    {
+      "origem": "src/negocio/BDD/RF04.java",
+      "destino": "backend/src/test/java/negocio/BDD/RF04.java",
+      "sha256": "dd67684fdf978986b0df5268b65fbb2cf0cf9a85f69fce9ddfe4bb9bf1205d79"
+    },
+    {
+      "origem": "src/negocio/BDD/RF05.java",
+      "destino": "backend/src/test/java/negocio/BDD/RF05.java",
+      "sha256": "c89ca0ed009ce8d790faf149d310e078d8af5a98fbcd0106bd218e548eab558b"
+    },
+    {
+      "origem": "src/negocio/BDD/RF08.java",
+      "destino": "backend/src/test/java/negocio/BDD/RF08.java",
+      "sha256": "deb1a0e5be5c698741116e1b114a30d11bd160edd5d3fbbc554eb26fb6cb954b"
+    },
+    {
+      "origem": "src/negocio/DDD/RF06.java",
+      "destino": "backend/src/test/java/negocio/DDD/RF06.java",
+      "sha256": "131c4e5298c0a0973337d9ea3094884e2704960cf9f8806ac95465a2fd1c76e8"
+    },
+    {
+      "origem": "src/negocio/DDD/RF07.java",
+      "destino": "backend/src/test/java/negocio/DDD/RF07.java",
+      "sha256": "b7d7b2c465428558018d4c117c9feb5230f9c789f1254907d47d928b44232b4a"
+    },
+    {
+      "origem": "src/negocio/DDD/RF10.java",
+      "destino": "backend/src/test/java/negocio/DDD/RF10.java",
+      "sha256": "93a2ffc23f7546f3f9bb4e5c9c9602ec84bbb8803cec7ddcc040b475d00f295a"
+    },
+    {
+      "origem": "src/negocio/DDD/RF11.java",
+      "destino": "backend/src/test/java/negocio/DDD/RF11.java",
+      "sha256": "bf17baa5f80fb898328038c6c301eee1832050bdea4b30f90e7368a4b7c39dc7"
+    },
+    {
+      "origem": "src/negocio/TDD/CaracterizacaoLegadoTest.java",
+      "destino": "backend/src/test/java/negocio/TDD/CaracterizacaoLegadoTest.java",
+      "sha256": "56ff26c2b3688ddb9ae55a9099daed1eab4bad3867539fea97cbbb9cca059942"
+    },
+    {
+      "origem": "src/negocio/TDD/RF02.java",
+      "destino": "backend/src/test/java/negocio/TDD/RF02.java",
+      "sha256": "1e95f2f66a255a071de783e749b05e7138c95d73f67d067528053db2251bb1e0"
+    },
+    {
+      "origem": "src/negocio/TDD/RF03.java",
+      "destino": "backend/src/test/java/negocio/TDD/RF03.java",
+      "sha256": "8b59a195dd1428e2f3d4a582cf29d95e296c719db0b093c77a12db45d61d1cdf"
+    },
+    {
+      "origem": "src/negocio/TDD/RF09.java",
+      "destino": "backend/src/test/java/negocio/TDD/RF09.java",
+      "sha256": "ccc5de11934b44fbde44d220d8054e75c610e859d587faa79e6d4e5d3b7ff65f"
+    },
+    {
+      "origem": "src/negocio/TDD/RF12.java",
+      "destino": "backend/src/test/java/negocio/TDD/RF12.java",
+      "sha256": "5fe703c1a5bbeee8640ab02fa24b2d413286db760795cc2c27546ca469376f4d"
+    }
+  ],
+  "limites": [
+    "Sem Cucumber, API, E2E, JaCoCo ou PIT nesta execucao.",
+    "Revisao humana de regras pendente.",
+    "Nao e comparacao diferencial de duas implementacoes funcionais."
+  ]
+}

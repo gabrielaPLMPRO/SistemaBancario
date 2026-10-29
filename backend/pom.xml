@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent><groupId>br.edu.sistemabancario</groupId><artifactId>sistema-bancario</artifactId><version>0.1.0-SNAPSHOT</version></parent>
+  <artifactId>sistema-bancario-backend</artifactId>
+  <name>Sistema Bancario - Backend</name>
+  <properties><spring-boot.version>3.5.16</spring-boot.version><cucumber.version>7.30.0</cucumber.version></properties>
+  <dependencyManagement><dependencies>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-dependencies</artifactId><version>${spring-boot.version}</version><type>pom</type><scope>import</scope></dependency>
+    <dependency><groupId>io.cucumber</groupId><artifactId>cucumber-bom</artifactId><version>${cucumber.version}</version><type>pom</type><scope>import</scope></dependency>
+  </dependencies></dependencyManagement>
+  <dependencies>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId></dependency>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-validation</artifactId></dependency>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-test</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>org.junit.vintage</groupId><artifactId>junit-vintage-engine</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>org.junit.platform</groupId><artifactId>junit-platform-launcher</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.13.2</version><scope>test</scope></dependency>
+    <dependency><groupId>io.cucumber</groupId><artifactId>cucumber-java</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>io.cucumber</groupId><artifactId>cucumber-spring</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>io.cucumber</groupId><artifactId>cucumber-junit</artifactId><scope>test</scope></dependency>
+  </dependencies>
+  <build>
+    <resources>
+      <resource><directory>src/main/resources</directory></resource>
+      <resource><directory>../frontend</directory><targetPath>static</targetPath></resource>
+    </resources>
+    <plugins>
+      <plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId><version>${spring-boot.version}</version>
+        <configuration><mainClass>banco.BancoApplication</mainClass></configuration>
+        <executions><execution><goals><goal>repackage</goal></goals></execution></executions>
+      </plugin>
+      <plugin><groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>0.8.14</version>
+        <executions>
+          <execution><goals><goal>prepare-agent</goal></goals></execution>
+          <execution><id>relatorio</id><phase>verify</phase><goals><goal>report</goal></goals></execution>
+          <execution><id>qualidade-dominio</id><phase>verify</phase><goals><goal>check</goal></goals><configuration><rules><rule><element>PACKAGE</element><includes><include>banco.application</include><include>banco.domain</include></includes><limits><limit><counter>INSTRUCTION</counter><value>COVEREDRATIO</value><minimum>0.90</minimum></limit><limit><counter>BRANCH</counter><value>COVEREDRATIO</value><minimum>0.90</minimum></limit></limits></rule></rules></configuration></execution>
+        </executions>
+      </plugin>
+      <plugin><groupId>org.pitest</groupId><artifactId>pitest-maven</artifactId><version>1.20.3</version>
+        <configuration><targetClasses><param>banco.domain.*</param><param>banco.application.*</param></targetClasses><targetTests><param>banco.unit.*Test</param></targetTests><threads>2</threads><timestampedReports>false</timestampedReports><outputFormats><param>HTML</param><param>XML</param></outputFormats><mutationThreshold>80</mutationThreshold></configuration>
+        <dependencies><dependency><groupId>org.pitest</groupId><artifactId>pitest-junit5-plugin</artifactId><version>1.2.3</version></dependency></dependencies>
+      </plugin>
+    </plugins>
+  </build>
+</project>

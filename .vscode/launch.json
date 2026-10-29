@@ -12,17 +12,10 @@
         },
         {
             "type": "java",
-            "name": "Main",
+            "name": "Aplicação Web",
             "request": "launch",
-            "mainClass": "negocio.Main",
-            "projectName": "SistemaBancario_src"
-        },
-        {
-            "type": "java",
-            "name": "Main(1)",
-            "request": "launch",
-            "mainClass": "negocio.Main",
-            "projectName": "SistemaBancario"
+            "mainClass": "banco.BancoApplication",
+            "projectName": "sistema-bancario-backend"
         }
     ]
 }

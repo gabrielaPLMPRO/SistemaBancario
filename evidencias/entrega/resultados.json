@@ -1,0 +1,253 @@
+{
+  "registrado_em": "2026-10-29T19:59:04.100786-03:00",
+  "commit_fonte": "cddd0de16e4a80a49f7314c736e6bc65ffbacb6a",
+  "branch": "evolucao/fluxo-bancario-web",
+  "arvore_com_alteracoes": true,
+  "sha256_conjunto_fontes": "87e23dc6a45c4ca77ec876d5f332fafa3ecee91e57055be2eb602d7b7a233cbe",
+  "normalizacao_digest": "Caminhos relativos e conteudo textual com finais de linha LF",
+  "ambiente": {
+    "java": "Temurin 21.0.13+9",
+    "maven": "3.9.16",
+    "spring_boot": "3.5.16",
+    "node": "v24.21.0",
+    "cypress": "15.21.1",
+    "browser": "electron 138.0.7204.251 headless",
+    "sistema": "Windows 11"
+  },
+  "junit": {
+    "totais": {
+      "tests": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "classes": [
+      {
+        "nome": "banco.api.ApiTest",
+        "tests": 21,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "banco.bdd.RunCucumberTest",
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "banco.diferencial.ComparacaoLegadoTest",
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "banco.unit.BancoServiceTest",
+        "tests": 24,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "banco.unit.ConcorrenciaTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.BDD.RF01",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.BDD.RF04",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.BDD.RF05",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.BDD.RF08",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.DDD.RF06",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.DDD.RF07",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.DDD.RF10",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.DDD.RF11",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.TDD.CaracterizacaoLegadoTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.TDD.RF02",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.TDD.RF03",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.TDD.RF09",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.TDD.RF12",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "nome": "negocio.Testes",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "cucumber": {
+    "cenarios": 12,
+    "resultado": "passed"
+  },
+  "jacoco_recorte": {
+    "banco/domain": {
+      "INSTRUCTION": {
+        "covered": 109,
+        "missed": 0
+      },
+      "BRANCH": {
+        "covered": 8,
+        "missed": 0
+      },
+      "LINE": {
+        "covered": 16,
+        "missed": 0
+      },
+      "COMPLEXITY": {
+        "covered": 12,
+        "missed": 0
+      },
+      "METHOD": {
+        "covered": 8,
+        "missed": 0
+      },
+      "CLASS": {
+        "covered": 4,
+        "missed": 0
+      }
+    },
+    "banco/application": {
+      "INSTRUCTION": {
+        "covered": 233,
+        "missed": 0
+      },
+      "BRANCH": {
+        "covered": 14,
+        "missed": 0
+      },
+      "LINE": {
+        "covered": 41,
+        "missed": 0
+      },
+      "COMPLEXITY": {
+        "covered": 18,
+        "missed": 0
+      },
+      "METHOD": {
+        "covered": 11,
+        "missed": 0
+      },
+      "CLASS": {
+        "covered": 5,
+        "missed": 0
+      }
+    }
+  },
+  "pit": {
+    "total": 31,
+    "status": {
+      "KILLED": 31
+    }
+  },
+  "cypress": {
+    "tests": 3,
+    "failures": 0,
+    "testes": [
+      "CT-FL01 — cadastro, abertura, consulta e transferencia reais conclui o fluxo e conserva os saldos totais",
+      "CT-FL01 — cadastro, abertura, consulta e transferencia reais mostra rejeicoes reais e preserva os saldos",
+      "CT-FL01 — cadastro, abertura, consulta e transferencia reais permite operar em tela pequena sem rolagem horizontal"
+    ]
+  },
+  "jar_sha256": "f6efb7f11e7a7d61fda60fc45b6c93c5f1a7d43a0968f2c762ad6f57f54a79d5",
+  "fixture_e_legado_ausentes_do_jar": true,
+  "verificacao_checkout_limpo": {
+    "commit": "cddd0de16e4a80a49f7314c736e6bc65ffbacb6a",
+    "junit": {
+      "tests": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "cypress": 3,
+    "cypress_version": "15.21.1",
+    "fontes_conferem": true,
+    "jar_identico": true
+  },
+  "limites": [
+    "Metricas de dominio/aplicacao nao representam todo o produto.",
+    "Sem avaliacao de usuarios ou revisao academica comprovada.",
+    "A CI remota possui execucao propria; consultar seu status no GitHub."
+  ]
+}
