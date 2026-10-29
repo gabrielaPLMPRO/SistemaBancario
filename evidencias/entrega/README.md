@@ -42,3 +42,9 @@ O ciclo TDD começou com erro de compilação por serviços ausentes e passou ap
 A primeira reprodução em checkout limpo confirmou 110 testes Java e 3 Cypress. A diferença binária inicialmente observada entre JARs era somente o POM incluído no pacote, com finais de linha Windows versus LF; os fontes de negócio conferiam. Os POMs locais foram normalizados para seguir `.gitattributes` e o artefato foi reempacotado com os mesmos fontes. A auditoria desse checkout também motivou atualizar Cypress de 15.5.0 para 15.21.1 e repetir a verificação do navegador.
 
 A reprodução final do commit `cddd0de16e4a80a49f7314c736e6bc65ffbacb6a`, após `git pull --ff-only` e `npm ci --ignore-scripts`, aprovou novamente **110 testes Java e 3 Cypress 15.21.1**. O checkout estava limpo; o digest dos fontes conferiu e os JARs foram idênticos byte a byte, SHA-256 `f6efb7f11e7a7d61fda60fc45b6c93c5f1a7d43a0968f2c762ad6f57f54a79d5`. Os commits posteriores de documentação/evidências registram essa execução, sem alterar os fontes avaliados. Os links locais de 19 documentos Markdown também foram conferidos.
+
+## Publicação e CI remota
+
+Branch `evolucao/fluxo-bancario-web` publicada e [PR #1 para main](https://github.com/gabrielaPLMPRO/SistemaBancario/pull/1) aberto para revisão, sem merge automático.
+
+O commit `69f3c60921acea9c46b9add6a2db10e6e158462c`, que acrescenta o registro da reprodução ao código validado, foi aprovado pela CI em 29/10/2026: [execução do push](https://github.com/gabrielaPLMPRO/SistemaBancario/actions/runs/40970025167) e [execução do PR](https://github.com/gabrielaPLMPRO/SistemaBancario/actions/runs/40970216315), ambas concluídas com `success`. Os jobs executaram backend/BDD/JaCoCo, Cypress no Linux e PIT, e publicaram os relatórios como artefatos. Este resultado foi consultado na API do GitHub; não é inferido da aprovação local. Novos commits têm execuções próprias, consultáveis no PR.

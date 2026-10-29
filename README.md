@@ -94,6 +94,8 @@ Os 38 testes anteriores e as classes antigas estão exclusivamente no classpath 
 
 A CI executa os testes no GitHub e publica os relatórios como artefatos. O status efetivo da execução remota deve ser conferido no PR; uma configuração de CI existente não equivale a uma execução aprovada.
 
+Entrega publicada no [PR #1](https://github.com/gabrielaPLMPRO/SistemaBancario/pull/1), aberto para revisão. O commit `69f3c60` foi aprovado pela [CI do PR](https://github.com/gabrielaPLMPRO/SistemaBancario/actions/runs/40970216315), com regressão, E2E e mutação. A [evidência da entrega](evidencias/entrega/README.md) registra também a reprodução em checkout limpo e seus limites.
+
 ## Autoria e apresentação
 
 Apoio de Codex (OpenAI) documentado em [USO_DE_IA.md](USO_DE_IA.md). Os alunos devem preencher [autoria e contribuições](docs/contribuicoes.md), revisar as regras e preparar a explicação individual. Essas atividades humanas não são declaradas como realizadas pela automação. O [roteiro da apresentação](docs/apresentacao.md) organiza uma demonstração de 10 a 12 minutos.
