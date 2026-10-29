@@ -1,0 +1,11 @@
+{
+  "name": "sistema-bancario-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fluxo real no navegador contra o backend Java de testes",
+  "scripts": {
+    "test": "node ../scripts/executar-e2e.mjs",
+    "cypress:run": "cypress run --browser electron"
+  },
+  "devDependencies": { "cypress": "15.5.0" }
+}

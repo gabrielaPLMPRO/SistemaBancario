@@ -1,3 +1,7 @@
+## Evolução do sistema — etapa 1
+
+O processo de diagnóstico, os comandos, os resultados dos testes e as próximas etapas estão no [README da etapa 1](../docs/etapa-1/README.md). Registro iniciado em 29/10/2026. O texto abaixo preserva o relato do trabalho anterior.
+
 
 
 # Trabalho 1 — Teste de Software

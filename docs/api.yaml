@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: Sistema Bancário — contrato do recorte
+  version: 1.0.0
+  description: RF02, RF03, RF09, RF08 e RF12. Dados em memória; sem rota de depósito ou fixture.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/clientes:
+    post:
+      summary: Cadastrar cliente sem conta (RF02 e RF03)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [id, nome, idade, email]
+              properties:
+                id: {type: integer, minimum: 1}
+                nome: {type: string, minLength: 1, maxLength: 120}
+                idade: {type: integer, description: Regra de domínio aceita de 18 a 65 inclusive}
+                email: {type: string, format: email, maxLength: 254}
+      responses:
+        '201':
+          description: Cliente cadastrado
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Cliente'}
+        '400': {$ref: '#/components/responses/EntradaInvalida'}
+        '409': {$ref: '#/components/responses/Conflito'}
+        '422': {$ref: '#/components/responses/RegraNegocio'}
+  /api/clientes/{id}/contas:
+    post:
+      summary: Abrir conta e vincular atomicamente (RF09)
+      parameters:
+        - {$ref: '#/components/parameters/Id'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [id]
+              properties:
+                id: {type: integer, minimum: 1}
+      responses:
+        '201':
+          description: Conta ativa, saldo inicial 0.00; cliente vinculado
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Conta'}
+        '400': {$ref: '#/components/responses/EntradaInvalida'}
+        '404': {$ref: '#/components/responses/NaoEncontrado'}
+        '409': {$ref: '#/components/responses/Conflito'}
+  /api/contas/{id}:
+    get:
+      summary: Consultar conta (RF08)
+      parameters:
+        - {$ref: '#/components/parameters/Id'}
+      responses:
+        '200':
+          description: Conta e seu saldo atual
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Conta'}
+        '400': {$ref: '#/components/responses/EntradaInvalida'}
+        '404': {$ref: '#/components/responses/NaoEncontrado'}
+  /api/transferencias:
+    post:
+      summary: Transferir valor entre contas ativas distintas (RF12)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [origemId, destinoId, valor]
+              properties:
+                origemId: {type: integer, minimum: 1}
+                destinoId: {type: integer, minimum: 1}
+                valor: {type: string, example: '150.00', description: Decimal positivo sem fração de centavo; zeros extras são aceitos}
+      responses:
+        '200':
+          description: Transferência concluída; saldos obtidos na mesma operação atômica
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [origemId, destinoId, saldoOrigem, saldoDestino]
+                properties:
+                  origemId: {type: integer}
+                  destinoId: {type: integer}
+                  saldoOrigem: {type: string, example: '350.00'}
+                  saldoDestino: {type: string, example: '250.00'}
+        '400': {$ref: '#/components/responses/EntradaInvalida'}
+        '404': {$ref: '#/components/responses/NaoEncontrado'}
+        '422': {$ref: '#/components/responses/RegraNegocio'}
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema: {type: integer, minimum: 1}
+  schemas:
+    Cliente:
+      type: object
+      required: [id, nome, idade, email, ativo, contaId]
+      properties:
+        id: {type: integer}
+        nome: {type: string}
+        idade: {type: integer}
+        email: {type: string}
+        ativo: {type: boolean}
+        contaId: {type: integer, nullable: true}
+    Conta:
+      type: object
+      required: [id, clienteId, saldo, ativa]
+      properties:
+        id: {type: integer}
+        clienteId: {type: integer}
+        saldo: {type: string, pattern: '^\d+\.\d{2}$', example: '0.00'}
+        ativa: {type: boolean}
+    Erro:
+      type: object
+      required: [codigo, mensagem]
+      properties:
+        codigo: {type: string}
+        mensagem: {type: string}
+  responses:
+    EntradaInvalida:
+      description: JSON, campo ou parâmetro inválido; estado preservado
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Erro'}
+    NaoEncontrado:
+      description: Cliente ou conta ausente; estado preservado
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Erro'}
+    Conflito:
+      description: ID duplicado ou cliente já possui conta; estado preservado
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Erro'}
+    RegraNegocio:
+      description: Idade, valor, saldo, mesma conta ou situação incompatíveis; estado preservado
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Erro'}

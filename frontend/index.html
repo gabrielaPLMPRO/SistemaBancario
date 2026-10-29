@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173c36">
+  <title>Fluxo — operações bancárias</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <aside class="sidebar">
+    <a class="brand" href="#conteudo" aria-label="Fluxo, início"><span class="brand-symbol">f</span> fluxo<span class="brand-dot">.</span></a>
+    <p class="sidebar-label">ÁREA DO OPERADOR</p>
+    <nav aria-label="Operações">
+      <a class="nav-item" href="#cadastro"><span>01</span> Cadastrar cliente <b>↗</b></a>
+      <a class="nav-item" href="#abertura"><span>02</span> Abrir conta <b>↗</b></a>
+      <a class="nav-item" href="#consulta"><span>03</span> Consultar saldo <b>↗</b></a>
+      <a class="nav-item" href="#transferencia"><span>04</span> Transferir <b>↗</b></a>
+    </nav>
+    <div class="sidebar-note"><span class="small-circle"></span><h2>Um passo de cada vez.</h2><p>Cadastre o cliente, abra sua conta e acompanhe cada movimento.</p></div>
+    <div class="sidebar-footer"><span class="status-dot"></span> Ambiente de estudos</div>
+  </aside>
+  <main id="conteudo">
+    <header class="topbar"><span>Operações bancárias <span class="slash">/</span> Visão geral</span><div><time id="data-atual"></time><span class="avatar" aria-label="Operador">OP</span></div></header>
+    <section class="intro" aria-labelledby="titulo">
+      <div><p class="eyebrow">SIMPLES. CLARO. CONECTADO.</p><h1 id="titulo">Cada movimento,<br>no seu lugar.</h1><p class="intro-copy">Clientes, contas e transferências.<br>O essencial para conduzir suas operações com clareza.</p></div>
+      <div class="intro-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-card"><span>fluxo.</span><div class="chip"></div><strong>Seu próximo<br>movimento.</strong><small>CONEXÕES QUE FAZEM SENTIDO</small></div><span class="art-plus">+</span></div>
+    </section>
+    <section class="accounts-section" aria-labelledby="contas-titulo"><div class="section-heading"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2 id="contas-titulo">Contas consultadas</h2></div><span class="section-caption">Saldos atualizados a cada consulta</span></div><div id="contas" class="accounts" data-testid="contas"><div class="empty-state"><span class="empty-icon" aria-hidden="true">↗</span><div><h3>Uma visão clara dos seus saldos.</h3><p>Consulte uma conta abaixo para acompanhar seus dados por aqui.</p></div></div></div></section>
+    <div class="operations-heading"><p class="eyebrow">SUA ROTINA, ORGANIZADA</p><h2>O que vamos fazer agora?</h2></div>
+    <div class="operation-grid">
+      <section id="cadastro" class="panel" aria-labelledby="cadastro-titulo"><div class="panel-heading"><span class="step">01</span><div><h2 id="cadastro-titulo">Cadastrar cliente</h2><p>O primeiro passo para uma nova conexão.</p></div><span class="panel-icon" aria-hidden="true">+</span></div>
+        <form id="form-cliente" data-testid="form-cliente">
+          <div class="field-row"><label>ID do cliente<input name="id" data-testid="cliente-id" type="number" min="1" step="1" max="2147483647" placeholder="Ex.: 101" required></label><label>Idade<input name="idade" data-testid="cliente-idade" type="number" min="18" max="65" step="1" placeholder="18 a 65 anos" required></label></div>
+          <label>Nome completo<input name="nome" data-testid="cliente-nome" autocomplete="name" maxlength="120" placeholder="Como o cliente se chama?" required></label>
+          <label>Email<input name="email" data-testid="cliente-email" type="email" autocomplete="email" maxlength="254" placeholder="nome@exemplo.com" required></label>
+          <div class="form-footer"><span>Dados para o novo cadastro</span><button data-testid="cadastrar" type="submit">Cadastrar <span aria-hidden="true">↗</span></button></div>
+          <p class="feedback" role="status" data-testid="cliente-resultado"></p>
+        </form>
+      </section>
+      <section id="abertura" class="panel" aria-labelledby="abertura-titulo"><div class="panel-heading"><span class="step">02</span><div><h2 id="abertura-titulo">Abrir conta</h2><p>Um cliente cadastrado. Uma conta para começar.</p></div><span class="panel-icon" aria-hidden="true">↗</span></div>
+        <form id="form-conta" data-testid="form-conta"><label>ID do cliente<input name="clienteId" data-testid="conta-cliente-id" type="number" min="1" max="2147483647" step="1" placeholder="Cliente já cadastrado" required></label><label>ID da nova conta<input name="id" data-testid="conta-id" type="number" min="1" max="2147483647" step="1" placeholder="Ex.: 1001" required></label><div class="info-box"><span aria-hidden="true">i</span><p>A nova conta começa com <strong>R$ 0,00</strong>. Cada cliente pode ter uma conta.</p></div><div class="form-footer"><span>Vínculo criado na abertura</span><button data-testid="abrir-conta" type="submit">Abrir conta <span aria-hidden="true">↗</span></button></div><p class="feedback" role="status" data-testid="conta-resultado"></p></form>
+      </section>
+      <section id="consulta" class="panel" aria-labelledby="consulta-titulo"><div class="panel-heading"><span class="step">03</span><div><h2 id="consulta-titulo">Consultar saldo</h2><p>Encontre a conta e veja seu saldo atual.</p></div><span class="panel-icon" aria-hidden="true">⌕</span></div><form id="form-consulta" data-testid="form-consulta"><label>ID da conta<input name="id" data-testid="consulta-id" type="number" min="1" max="2147483647" step="1" placeholder="Qual conta deseja consultar?" required></label><p class="form-note">O saldo e a situação da conta aparecem na área de acompanhamento.</p><div class="form-footer"><span>Informações da conta</span><button data-testid="consultar" type="submit">Consultar <span aria-hidden="true">↗</span></button></div><p class="feedback" role="status" data-testid="consulta-resultado"></p></form></section>
+      <section id="transferencia" class="panel" aria-labelledby="transferencia-titulo"><div class="panel-heading"><span class="step">04</span><div><h2 id="transferencia-titulo">Transferir valor</h2><p>De uma conta para outra, com confirmação.</p></div><span class="panel-icon" aria-hidden="true">⇄</span></div><form id="form-transferencia" data-testid="form-transferencia"><div class="field-row"><label>Conta de origem<input name="origemId" data-testid="transferencia-origem" type="number" min="1" max="2147483647" step="1" placeholder="ID da origem" required></label><label>Conta de destino<input name="destinoId" data-testid="transferencia-destino" type="number" min="1" max="2147483647" step="1" placeholder="ID do destino" required></label></div><label>Valor em reais<div class="money-field"><span>R$</span><input name="valor" data-testid="transferencia-valor" inputmode="decimal" maxlength="80" pattern="[0-9]+([.,][0-9]+)?" placeholder="0,00" required></div></label><div class="form-footer"><span>Confira as contas antes de enviar</span><button data-testid="transferir" type="submit">Transferir <span aria-hidden="true">↗</span></button></div><p class="feedback" role="status" data-testid="transferencia-resultado"></p></form></section>
+    </div>
+    <footer class="page-footer"><span class="footer-brand">fluxo.</span><p>Clareza para cada operação.</p><span>Sistema bancário · Projeto acadêmico</span></footer>
+  </main>
+</body>
+</html>

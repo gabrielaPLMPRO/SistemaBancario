@@ -1,517 +1,99 @@
+# Sistema Bancário — evolução orientada por comportamento
 
+Aplicação Java com frontend HTML/CSS/JavaScript separado, API REST e dados em memória. Implementa o recorte de cinco requisitos do roteiro da pasta **contexto para IA**: cadastro de cliente (RF02), validação de idade (RF03), abertura de conta (RF09), consulta de conta (RF08) e transferência (RF12).
 
-# Trabalho 1 — Teste de Software
+A execução segue o roteiro metodológico local e o compilado de práticas de refatoração com LLM, apoiados nos artigos fornecidos. O [mapa de etapas](docs/README.md) e a [rastreabilidade das fontes](docs/etapa-1/fontes-e-rastreabilidade.md) distinguem orientações, escolhas de implementação e resultados executados.
 
-# [Link do docs](https://www.exemplo.com)
+## Executar a aplicação
 
-## TDD
+Requisitos: **JDK 21** e acesso à rede no primeiro build. Maven 3.9.16 é baixado pelo Wrapper, com checksum fixado. Node 24 é necessário apenas para os testes de navegador.
 
-# RF02 – Cadastrar cliente
+Na raiz, em PowerShell:
 
-Regra testada:
+```powershell
+$env:JAVA_HOME = 'C:/caminho/para/seu/jdk-21'
+./mvnw.cmd clean verify
+& "$env:JAVA_HOME/bin/java.exe" -jar backend/target/sistema-bancario-backend-0.1.0-SNAPSHOT.jar
+```
 
-O sistema deve cadastrar um cliente válido, desde que seu identificador ainda não esteja sendo utilizado por outro cliente.
+Abra **http://localhost:8080**. Para encerrar, use Ctrl+C no terminal do servidor. No Linux/macOS, use `sh mvnw clean verify` e `$JAVA_HOME/bin/java -jar backend/target/sistema-bancario-backend-0.1.0-SNAPSHOT.jar`.
 
-## 🔴 RED
+O ambiente inicia vazio. Cadastre um cliente entre 18 e 65 anos, abra sua conta e consulte o saldo. A conta começa com R$ 0,00. Os dados são perdidos ao encerrar; não há depósito, autenticação ou banco persistente neste recorte. Para demonstrar uma transferência positiva, use o fluxo automatizado com fixture interna descrito abaixo.
 
-Teste criado:
+## Comportamentos e contrato
 
-`deveCadastrarClienteValido()`
+| RF | Operação | Resultado principal |
+| --- | --- | --- |
+| RF02 / RF03 | `POST /api/clientes` | ID único, idade de 18 a 65, cliente ativo sem conta |
+| RF09 | `POST /api/clientes/{id}/contas` | Uma conta por cliente, vínculo efetivo e saldo zero |
+| RF08 | `GET /api/contas/{id}` | Conta, titular, saldo decimal e situação; 404 se ausente |
+| RF12 | `POST /api/transferencias` | Contas ativas distintas, valor positivo, sem fração de centavo e saldo suficiente |
 
-Resultado obtido:
+Dinheiro usa BigDecimal no servidor e strings decimais no JSON. Rejeições preservam o estado. O bloqueio compartilhado garante atomicidade das operações compostas na instância em memória. O frontend envia solicitações e exibe saldos retornados pelo servidor.
 
-O teste não compilou porque o método `cadastraCliente` ainda não existia na classe `GerenciadoraClientes`.
+Exemplo de transferência:
 
-Por que falhou?
+```json
+{ "origemId": 1001, "destinoId": 1002, "valor": "150.00" }
+```
 
-O teste foi criado primeiro para definir o comportamento esperado: validar a duplicidade do identificador e adicionar um cliente válido à lista de clientes do banco.
+[Contrato OpenAPI](docs/api.yaml), [decisões e diferenças do legado](docs/decisoes.md).
 
-## 🟢 GREEN
+## Testes e relatórios
 
-Alteração realizada:
+Regressão, API, comparação diferencial, Cucumber e cobertura:
 
-Foi criado o método `cadastraCliente` na classe `GerenciadoraClientes`. O método verifica se o identificador do novo cliente já está cadastrado e, caso não esteja, adiciona o cliente à lista.
+```powershell
+./mvnw.cmd clean verify
+```
 
-Resultado:
+Mutação do domínio e dos serviços:
 
-O teste `deveCadastrarClienteValido()` passou.
+```powershell
+./mvnw.cmd -f backend/pom.xml test-compile org.pitest:pitest-maven:mutationCoverage
+```
 
-## 🔵 REFACTOR
+Fluxo real no navegador:
 
-Refatoração realizada:
+```powershell
+./mvnw.cmd verify dependency:build-classpath '-Dmdep.outputFile=target/e2e-classpath.txt' '-Dmdep.includeScope=test'
+npm.cmd ci --prefix e2e --ignore-scripts
+node e2e/node_modules/cypress/bin/cypress install
+npm.cmd --prefix e2e test
+```
 
-Não foi necessária.
+O executor inicia seu próprio servidor de testes, aplica a fixture por canal interno e encerra o processo ao terminar. A fixture não é uma rota HTTP e suas classes não estão no JAR de produção. CT-FL01 usa Ana (101/1001) e Bruno (102/1002), saldos 500/100, transfere 150 e verifica 350/250 e total 600. Há rejeições reais e verificação de tela pequena. No Linux sem display, use `xvfb-run -a npm --prefix e2e test`.
 
-Justificativa:
+No Windows também existe o atalho `./scripts/validar.ps1 -Mutacao -E2e`, com JAVA_HOME configurado.
 
-O método possui responsabilidade clara e reutiliza `validaClienteNaoDuplicado()` e `adicionaCliente()`.
-
-Resultado final:
-
-Todos os testes permaneceram aprovados.
-
-# RF03 – Validar idade do cliente
-
-Regra testada:
-
-O sistema não deve cadastrar clientes menores de 18 anos.
-
-## 🔴 RED
-
-Teste criado:
-
-`naoDeveCadastrarClienteMenorDeIdade()`
-
-Resultado obtido:
-
-A exceção `IdadeNaoPermitidaException` não foi lançada.
-
-Por que falhou?
-
-O método cadastrava o cliente sem validar a idade.
-
-## 🟢 GREEN
-
-Alteração realizada:
-
-O método passou a chamar `validaIdade()` antes do cadastro e declarar a exceção.
-
-Resultado:
-
-O teste passou.
-
-## 🔵 REFACTOR
-
-Não foi necessária refatoração.
-
-# RF09 – Cadastrar conta corrente
-
-Regra testada:
-
-Cadastrar conta apenas para clientes existentes e impedir identificadores duplicados.
-
-## 🔴 RED
-
-Teste criado:
-
-`deveCadastrarContaParaClienteExistente()`
-
-Resultado:
-
-O método `cadastraContaParaCliente()` não existia.
-
-## 🟢 GREEN
-
-Implementação:
-
-Foi criado o método que valida duplicidade e adiciona a conta.
-
-Resultado:
-
-Teste aprovado.
-
-## RF09 – Cliente inexistente
-
-Regra testada:
-
-Não permitir cadastro de conta para cliente inexistente.
-
-### 🔴 RED
-
-Teste:
-
-`naoDeveCadastrarContaParaClienteInexistente()`
-
-Resultado:
-
-O método retornava `true` e cadastrava a conta.
-
-### 🟢 GREEN
-
-Correção:
-
-Foi adicionada a verificação da existência do cliente.
-
-Resultado:
-
-Teste aprovado.
-
-### 🔵 REFACTOR
-
-Nenhuma alteração adicional.
-
-# RF12 – Transferir valores entre contas
-
-Regra testada:
-
-Aceitar apenas valores positivos e com saldo suficiente.
-
-## Caso 1 — Valor zero
-
-### 🔴 RED
-
-Teste:
-
-`naoDeveTransferirValorZero()`
-
-Resultado:
-
-Transferência de valor zero era aceita.
-
-### 🟢 GREEN
-
-Correção:
-
-A condição passou a exigir valor diferente de zero.
-
-## Caso 2 — Valor negativo
-
-### 🔴 RED
-
-Teste:
-
-`naoDeveTransferirValorNegativo()`
-
-Resultado:
-
-Valores negativos alteravam os saldos incorretamente.
-
-### 🟢 GREEN
-
-Correção:
-
-A regra passou para `valor > 0`.
-
-## Caso 3 — Saldo insuficiente
-
-Teste:
-
-`naoDeveTransferirQuandoSaldoForInsuficiente()`
-
-Resultado:
-
-Passou na primeira execução.
-
-### 🔵 REFACTOR
-
-Foi criado o método auxiliar `criaGerenciadoraParaTransferencia()` para eliminar repetição nos testes.
-
-# BDD
-
-# RF01 – Consultar cliente
-
-## Funcionalidade
-
-Consulta de cliente por identificador.
-
-## História
-
-> Como usuário do sistema bancário, quero consultar um cliente por seu identificador para visualizar seus dados.
-
-### Cenário 1 — Cliente existente
-
-Dado que existe um cliente com ID 1
-
-Quando consultar o ID 1
-
-Então o sistema retorna o cliente correspondente.
-
-Teste automatizado:
-
-`deveConsultarClienteExistente()`
-
-### Cenário 2 — Cliente inexistente
-
-Dado que não existe cliente com ID 99
-
-Quando consultar o ID 99
-
-Então o sistema retorna `null`.
-
-Teste automatizado:
-
-`deveRetornarNullParaClienteInexistente()`
-
-Resultado final: ambos os cenários passaram sem alterações no código.
-
-# RF04 – Ativar cliente
-
-## História
-
-> Como usuário, quero ativar um cliente para que ele fique ativo.
-
-### Cenário 1 — Ativar cliente inativo
-
-Teste: `deveAtivarClienteInativo()`
-
-* RED: método inexistente
-
-* GREEN: criação de `ativaCliente(int)`
-
-* Resultado: aprovado
-
-### Cenário 2 — Cliente inexistente
-
-Teste: `naoDeveAtivarClienteInexistente()`
-
-O método retorna `false` quando o cliente não existe.
-
-# RF05 – Desativar cliente
-
-## História
-
-> Como usuário, quero desativar um cliente para que ele fique inativo.
-
-### Cenário 1 — Cliente ativo
-
-Teste: `deveDesativarClienteAtivo()`
-
-* RED: método inexistente
-
-* GREEN: criação de `desativaCliente(int)`
-
-* Resultado: aprovado
-
-### Cenário 2 — Cliente inexistente
-
-Teste: `naoDeveDesativarClienteInexistente()`
-
-Retorna `false`.
-
-# RF08 – Consultar conta corrente
-
-## Funcionalidade
-
-Consulta de conta por identificador.
-
-### Cenário 1 — Conta existente
-
-Teste: `deveConsultarContaExistente()`
-
-Passou na primeira execução.
-
-### Cenário 2 — Conta inexistente
-
-Teste: `deveRetornarNullParaContaInexistente()`
-
-Retorna `null`.
-
-# DDD
-
-# RF06 – Verificar situação do cliente
-
-## Conceito de domínio
-
-Cliente e sua situação (ativo/inativo).
-
-### Regra de negócio
-
-Todo cliente possui uma situação própria.
-
-### Problema identificado
-
-`GerenciadoraClientes` verificava diretamente a situação do cliente.
-
-### Modelagem proposta
-
-* `Cliente` é responsável por informar seu estado (`isAtivo()`).
-
-* `GerenciadoraClientes` apenas localiza o cliente.
-
-### Resultado
-
-A responsabilidade foi delegada corretamente sem quebrar os testes.
-
-# RF07 – Remover cliente
-
-## Regra de negócio
-
-Um cliente só pode ser removido quando estiver inativo.
-
-### Problema
-
-Clientes ativos podiam ser removidos.
-
-### Modelagem
-
-* Localizar cliente
-
-* Verificar `isAtivo()`
-
-* Remover apenas se estiver inativo
-
-### Resultado
-
-O teste passou após a alteração.
-
-# RF10 – Verificar situação da conta corrente
-
-## Conceito de domínio
-
-Conta corrente e sua situação.
-
-### Modelagem proposta
-
-* `ContaCorrente` informa seu estado através de `isAtiva()`.
-
-* `GerenciadoraContas` apenas localiza a conta.
-
-### Resultado
-
-Os testes permaneceram aprovados.
-
-# RF11 – Remover conta
-
-## Regra de negócio
-
-Uma conta corrente somente pode ser removida quando estiver inativa.
-
-### Problema
-
-O método removia contas ativas.
-
-### Solução
-
-A remoção passou a verificar a situação da entidade `ContaCorrente`.
-
-### Resultado
-
-* Conta ativa → não remove
-
-* Conta inativa → remove com sucesso
-
-## Resultado Geral
-
-|
-Categoria
-
-|
-
-Requisitos
-
-|
+| Evidência | Caminho após a execução |
 | --- | --- |
-|
+| Regressão JUnit | `backend/target/surefire-reports/` |
+| Cucumber | `backend/target/cucumber/relatorio.html` |
+| Cobertura JaCoCo | `backend/target/site/jacoco/index.html` |
+| Mutação PIT | `backend/target/pit-reports/index.html` |
+| Cypress | `e2e/results/` e `e2e/screenshots/` |
+| Amostra da entrega | [evidencias/entrega](evidencias/entrega/README.md) |
 
-TDD
+As metas verificadas pelo build são 90% de instruções e ramificações nos pacotes de domínio/aplicação e 80% de mutação no mesmo recorte. Os resultados e limites reais estão nas evidências; esses percentuais não representam todo o produto.
 
-|
+## Organização e processo
 
-RF02, RF03, RF09, RF12
+```text
+frontend/                    interface e cliente HTTP
+backend/src/main/java/banco/ dominio, servicos, API e memoria
+backend/src/test/java/       testes novos e snapshot do legado
+backend/src/test/resources/  cenarios Gherkin
+e2e/                       testes Cypress e package-lock
+docs/                      processo, regras, contrato e apresentacao
+evidencias/                resultados selecionados de execucoes reais
+.github/workflows/ci.yml    regressao, E2E, cobertura e mutacao
+```
 
-|
-|
+Os 38 testes anteriores e as classes antigas estão exclusivamente no classpath de testes, em `negocio`, para preservação da linha de base e comparação diferencial. O produto empacota somente o código novo. A aplicação de console anterior pode ser testada isoladamente com `scripts/testar-legado.ps1`; o [relato original](docs/historico/trabalho-1.md) foi preservado.
 
-BDD
+A CI executa os testes no GitHub e publica os relatórios como artefatos. O status efetivo da execução remota deve ser conferido no PR; uma configuração de CI existente não equivale a uma execução aprovada.
 
-|
+## Autoria e apresentação
 
-RF01, RF04, RF05, RF08
-
-|
-|
-
-DDD
-
-|
-
-RF06, RF07, RF10, RF11
-
-|
-
-# Integração das três abordagens
-# Requisito escolhido: RF07 — Remover cliente
-O requisito consiste em permitir a remoção de um cliente somente quando ele estiver inativo. Um cliente que esteja ativo não deve ser removido.
-A análise desse requisito pode ser realizada utilizando conjuntamente TDD, BDD e DDD, pois cada abordagem observa uma parte diferente do desenvolvimento.
-
-# TDD: Quais testes conduziriam a implementação?
-No TDD, a implementação seria conduzida pelos testes automatizados.
-Para o RF07, seriam necessários pelo menos dois cenários principais:
-
-## Não permitir a remoção de um cliente ativo:
-<img width="559" height="158" alt="image" src="https://github.com/user-attachments/assets/81b97b13-1777-484b-ad3b-bc363751f2db" />
-
-
-O teste verifica que a operação retorna false e que o cliente continua cadastrado. 
-
-
-## Permitir a remoção de um cliente inativo:
-<img width="566" height="155" alt="image" src="https://github.com/user-attachments/assets/5c9e4245-7e22-4310-ae55-3a5a2ed6daae" />
-Nesse caso, o teste verifica que a remoção é realizada e que o cliente deixa de existir na lista. 
-
-# BDD: Quais comportamentos e cenários descrevem o requisito?
-No BDD, o mesmo requisito é descrito pela perspectiva do comportamento esperado do sistema, do ponto de vista do usuário em si.
-História:
-Como funcionário do banco, quero remover clientes que estejam inativos para manter o cadastro atualizado.
-## Cenário 1:  Remover cliente inativo
-Dado que existe um cliente cadastrado
- E que o cliente está inativo
- Quando for solicitada a remoção do cliente
- Então o cliente deverá ser removido do cadastro.
-
-## Cenário 2: Tentar remover cliente ativo
-Dado que existe um cliente cadastrado
- E que o cliente está ativo
- Quando for solicitada a remoção do cliente
- Então o sistema não deverá remover o cliente.
-# DDD: Quais conceitos e regras estão envolvidos e onde deveriam estar representados? 
-Conceito de domínio envolvido:
-Cliente, situação do cliente e remoção de cliente.
-## Regra de negócio:
-Um cliente somente poderá ser removido do sistema quando estiver inativo. Clientes ativos não poderão ser removidos diretamente.
-
-Eles seguem representados pelas classes Cliente e GerenciadoraClientes.
-
-BDD
-↓
-O que o sistema deve fazer?
-
-Um cliente inativo pode ser removido.
-Um cliente ativo não pode ser removido.
-
-        ↓
-
-DDD
-↓
-Como essa regra pertence ao domínio?
-
-Cliente possui uma situação.
-A remoção deve respeitar a situação do cliente.
-A regra fica associada à responsabilidade de gerenciamento do cliente.
-
-        ↓
-
-TDD
-↓
-Como validar essa regra durante o desenvolvimento?
-
-Teste 1:
-cliente ativo → não remove
-
-Teste 2:
-cliente inativo → remove
-
-        ↓
-
-Sistema + Testes Automatizados
-
-
-# Uso de IA:
-
-## Prompts usados: “Me ajuda a entender a proposta do professor, no momento eu finalizei o cadastro de cliente” 
-## Resposta recebida: 
-O que o professor espera de vocês
-Ele dividiu os 12 requisitos em 3 partes. Cada abordagem trabalha 4 requisitos diferentes.
-Markdown.md colado
-TDD (desenvolver pelos testes)
-Você já começou aqui com Cadastrar Cliente.
-Requisitos 2, 3, 9 e 12
-BDD (descrever o comportamento)
-Não é código primeiro; são histórias e cenários.
-Requisitos 1, 4, 5 e 8
-DDD (organizar as regras do domínio)
-Aqui vocês analisam se as classes representam corretamente o banco.
-Requisitos 6, 7, 10 e 11
-
-
-Todos os requisitos foram implementados e a suíte completa de testes permaneceu aprovada.
+Apoio de Codex (OpenAI) documentado em [USO_DE_IA.md](USO_DE_IA.md). Os alunos devem preencher [autoria e contribuições](docs/contribuicoes.md), revisar as regras e preparar a explicação individual. Essas atividades humanas não são declaradas como realizadas pela automação. O [roteiro da apresentação](docs/apresentacao.md) organiza uma demonstração de 10 a 12 minutos.
