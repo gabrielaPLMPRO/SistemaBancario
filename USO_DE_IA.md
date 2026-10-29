@@ -28,3 +28,10 @@
 - Resultados executados: testes e relatórios reais em `evidencias/entrega/`. O primeiro teste de serviços falhou por classes ausentes; 24 testes iniciais passaram após a implementação. Falhas de integração e ambiente foram investigadas e corrigidas sem retirar cenários válidos.
 - Revisões automáticas: oráculos verificam aceitação/rejeição e estado, incluindo os dois saldos e vínculos; escopos de cobertura e mutação são explicitados. Capturas reais do Cypress foram inspecionadas e a captura desktop foi ajustada após corte visual.
 - Limites: o agente não atribuiu nomes, matrículas, aprovação humana, apresentação ao professor ou satisfação de usuários. Não declara equivalência completa com o legado fora dos casos comparados.
+
+## 29/10/2026 — Retomada e verificação final
+
+- Solicitação: continuar a partir de `docs/RETOMADA.md`, mantendo a autorização anterior para as etapas restantes.
+- Apoio realizado: atualização corretiva do Cypress para 15.21.1, registro das versões reais do navegador, conferência de evidências e reprodução do commit `cddd0de` em checkout limpo.
+- Validação: 110 testes Java e 3 Cypress aprovados na reprodução; zero alertas npm nessa instalação; fontes conferidos e JAR idêntico byte a byte. Capturas desktop e mobile inspecionadas; links locais conferidos.
+- Publicação: branch e PR preparados para revisão, com status remoto registrado nas evidências somente após consulta à execução real. Revisão acadêmica e autoria individual continuam pendentes de preenchimento pelos alunos.

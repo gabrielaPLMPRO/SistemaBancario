@@ -8,7 +8,7 @@ Trabalho retomado pelo usuário em 29/10/2026 a partir deste arquivo. O usuário
 - Base obrigatória: roteiro e artigos da pasta contexto para IA, especialmente refatoracao de codigo llm - processo.pdf. Ler docs/README.md e os READMEs das etapas 1 a 6.
 - Branch atual: evolucao/fluxo-bancario-web.
 - Commit local principal: 49ffbf014b0da4c255cd1f5645e354b46ef653bf — Implementa fluxo bancario Web com BDD e testes de qualidade.
-- Não houve push, PR, merge ou tags de entrega. O último comando que faria o segundo commit foi interrompido antes de executá-lo: conferir git status/log ao retomar.
+- Ajustes corretivos registrados no commit `cddd0de16e4a80a49f7314c736e6bc65ffbacb6a`. A reprodução final deste commit aprovou 110 testes Java e 3 Cypress 15.21.1, com fontes conferidos e JAR idêntico. Publicação e CI são registradas abaixo conforme executadas.
 
 ## Implementado e validado
 
@@ -41,11 +41,11 @@ Arquivos modificados incluem docs, e2e/package*.json, configuração/spec Cypres
 
 ## Pendências para concluir
 
-1. Conferir processos e git status/log.
-2. Executar E2E com as configurações finais, inspecionar capturas e regenerar evidências com scripts/registrar-evidencias.py.
-3. Commitar a atualização corretiva e documentação. Atualizar o checkout limpo via git pull --ff-only, npm ci --ignore-scripts e repetir a validação com Cypress 15.21.1. Para evitar colisão se houver testes simultâneos, usar BANCARIO_E2E_PORT diferente (ex.: 18082).
-4. Atualizar evidências para o commit correto com --checkout tmp/verificacao-checkout. O digest cobre fontes com finais LF. Não afirmar aprovação remota da CI antes de executá-la.
-5. Conferir links, git diff --check e estado final. Criar referências de baseline/entrega se apropriado.
+1. Concluído: conferência de processos e Git.
+2. Concluído: E2E final, inspeção das capturas e regeneração das evidências.
+3. Concluído: commit corretivo, atualização do checkout limpo, instalação pelo lockfile, 110 testes Java e 3 Cypress 15.21.1 aprovados. E2E dessa cópia usou a porta 18082.
+4. Concluído: `python scripts/registrar-evidencias.py --checkout tmp/verificacao-checkout`; digest dos fontes conferido e JAR idêntico byte a byte. O digest cobre fontes com finais LF.
+5. Concluído: links locais de 19 documentos conferidos e `git diff --check` aprovado. O arquivo local não versionado `.vscode/settings.json` foi preservado e não integra a entrega.
 6. Enviar branch ao origin e abrir PR para main pelo conector GitHub. Permissão de push foi confirmada para gabrielaPLMPRO/SistemaBancario, mas o envio ainda não foi tentado. Não fazer merge automático.
 7. Conferir CI remota e corrigir falhas reais; registrar status e link de PR no README de entrega.
 8. Informar ao usuário resultados e limitações. Autores/matrículas, revisão acadêmica e apresentação ao professor são atividades humanas não realizadas pelo agente.

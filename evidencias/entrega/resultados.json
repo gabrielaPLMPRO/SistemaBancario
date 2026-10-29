@@ -1,6 +1,6 @@
 {
-  "registrado_em": "2026-10-29T19:51:48.219006-03:00",
-  "commit_fonte": "49ffbf014b0da4c255cd1f5645e354b46ef653bf",
+  "registrado_em": "2026-10-29T19:59:04.100786-03:00",
+  "commit_fonte": "cddd0de16e4a80a49f7314c736e6bc65ffbacb6a",
   "branch": "evolucao/fluxo-bancario-web",
   "arvore_com_alteracoes": true,
   "sha256_conjunto_fontes": "87e23dc6a45c4ca77ec876d5f332fafa3ecee91e57055be2eb602d7b7a233cbe",
@@ -232,7 +232,19 @@
   },
   "jar_sha256": "f6efb7f11e7a7d61fda60fc45b6c93c5f1a7d43a0968f2c762ad6f57f54a79d5",
   "fixture_e_legado_ausentes_do_jar": true,
-  "verificacao_checkout_limpo": null,
+  "verificacao_checkout_limpo": {
+    "commit": "cddd0de16e4a80a49f7314c736e6bc65ffbacb6a",
+    "junit": {
+      "tests": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "cypress": 3,
+    "cypress_version": "15.21.1",
+    "fontes_conferem": true,
+    "jar_identico": true
+  },
   "limites": [
     "Metricas de dominio/aplicacao nao representam todo o produto.",
     "Sem avaliacao de usuarios ou revisao academica comprovada.",
