@@ -2,7 +2,7 @@
 
 Data: 29/10/2026. Referência inicial: `cc1767583ee9b7c1d1e9246c078164a210223c34`. Processo e execuções: [README da etapa 1](etapa-1/README.md).
 
-O inventário abaixo descreve a estrutura encontrada no diagnóstico. No incremento seguinte, os fontes foram movidos para `backend/src/main/java/negocio/` e os testes para `backend/src/test/java/negocio/`, sem mudança de conteúdo. O build atual usa Maven e JDK 21; os comportamentos diagnosticados permanecem os mesmos.
+O inventário abaixo descreve a estrutura encontrada no diagnóstico. Primeiro os fontes foram separados na estrutura Maven; depois o snapshot inteiro do legado passou para `backend/src/test/java/negocio/`, para regressão e comparação. A produção nova está em `backend/src/main/java/banco/`, com evoluções explícitas registradas em `docs/decisoes.md`. Os problemas diagnosticados continuam presentes no snapshot histórico, não são apresentados como regras da versão nova.
 
 ## Estrutura e responsabilidades
 

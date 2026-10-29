@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="22.347" tests="3" failures="0">
-  <testsuite name="Root Suite" timestamp="2026-10-29T22:10:31" tests="0" file="specs\fluxo.cy.js" time="0.000" failures="0">
+<testsuites name="Mocha Tests" time="31.335" tests="3" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-10-29T22:51:04" tests="0" file="specs\fluxo.cy.js" time="0.000" failures="0">
   </testsuite>
-  <testsuite name="CT-FL01 — cadastro, abertura, consulta e transferencia reais" timestamp="2026-10-29T22:10:31" tests="3" time="22.343" failures="0">
-    <testcase name="CT-FL01 — cadastro, abertura, consulta e transferencia reais conclui o fluxo e conserva os saldos totais" time="10.048" classname="conclui o fluxo e conserva os saldos totais">
+  <testsuite name="CT-FL01 — cadastro, abertura, consulta e transferencia reais" timestamp="2026-10-29T22:51:04" tests="3" time="31.333" failures="0">
+    <testcase name="CT-FL01 — cadastro, abertura, consulta e transferencia reais conclui o fluxo e conserva os saldos totais" time="18.008" classname="conclui o fluxo e conserva os saldos totais">
     </testcase>
-    <testcase name="CT-FL01 — cadastro, abertura, consulta e transferencia reais mostra rejeicoes reais e preserva os saldos" time="6.422" classname="mostra rejeicoes reais e preserva os saldos">
+    <testcase name="CT-FL01 — cadastro, abertura, consulta e transferencia reais mostra rejeicoes reais e preserva os saldos" time="7.327" classname="mostra rejeicoes reais e preserva os saldos">
     </testcase>
-    <testcase name="CT-FL01 — cadastro, abertura, consulta e transferencia reais permite operar em tela pequena sem rolagem horizontal" time="5.174" classname="permite operar em tela pequena sem rolagem horizontal">
+    <testcase name="CT-FL01 — cadastro, abertura, consulta e transferencia reais permite operar em tela pequena sem rolagem horizontal" time="5.420" classname="permite operar em tela pequena sem rolagem horizontal">
     </testcase>
   </testsuite>
 </testsuites>

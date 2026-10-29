@@ -7,5 +7,7 @@
     "test": "node ../scripts/executar-e2e.mjs",
     "cypress:run": "cypress run --browser electron"
   },
-  "devDependencies": { "cypress": "15.5.0" }
+  "devDependencies": {
+    "cypress": "15.21.1"
+  }
 }

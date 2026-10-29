@@ -1,6 +1,6 @@
 # Regras de negócio extraídas
 
-Data: 29/10/2026. Status: extraídas do código e caracterizadas; revisão humana pendente. Após a reorganização Maven, os métodos de produção estão em `backend/src/main/java/negocio/` e os testes em `backend/src/test/java/negocio/`. Os nomes relativos de testes abaixo referem-se a essa última pasta. A extração inicial foi feita antes da movimentação, em `src/negocio/`.
+Data: 29/10/2026. As RN abaixo descrevem o legado extraído e caracterizado; a revisão acadêmica continua pendente. O snapshot completo, com métodos e testes antigos, está em `backend/src/test/java/negocio/`. Os nomes relativos de testes abaixo referem-se a essa pasta. A produção nova está em `backend/src/main/java/banco/` e implementa essas regras mais as evoluções explícitas de `docs/decisoes.md`. A extração inicial foi feita antes das movimentações, em `src/negocio/`.
 
 | ID | RF | Comportamento observado | Origem | Evidência automatizada |
 | --- | --- | --- | --- | --- |

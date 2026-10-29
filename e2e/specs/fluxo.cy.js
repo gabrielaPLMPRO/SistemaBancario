@@ -49,7 +49,7 @@ describe('CT-FL01 — cadastro, abertura, consulta e transferencia reais', () =>
     campo('transferencia-resultado').should('contain', 'Transferência confirmada');
     consultar(1001, '350,00'); consultar(1002, '250,00');
     cy.document().then(doc => expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth));
-    cy.scrollTo('top'); cy.screenshot('CT-FL01-desktop', { capture: 'viewport' });
+    cy.scrollTo('top'); cy.screenshot('CT-FL01-desktop', { capture: 'viewport', overwrite: true });
   });
   it('mostra rejeicoes reais e preserva os saldos', () => {
     cadastrar(101, 'Ana', 25); abrir(101, 1001);
@@ -66,6 +66,6 @@ describe('CT-FL01 — cadastro, abertura, consulta e transferencia reais', () =>
     cy.viewport(390, 844);
     cadastrar(101, 'Ana', 25); abrir(101, 1001); consultar(1001, '0,00');
     cy.document().then(doc => expect(doc.documentElement.scrollWidth).to.be.at.most(doc.documentElement.clientWidth));
-    cy.scrollTo('top'); cy.screenshot('CT-mobile', { capture: 'fullPage' });
+    cy.scrollTo('top'); cy.screenshot('CT-mobile', { capture: 'fullPage', overwrite: true });
   });
 });

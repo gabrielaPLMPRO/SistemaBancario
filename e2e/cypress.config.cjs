@@ -6,6 +6,8 @@ const { randomUUID } = require('node:crypto');
 module.exports = defineConfig({
   video: false,
   screenshotOnRunFailure: true,
+  trashAssetsBeforeRuns: false,
+  allowCypressEnv: false,
   viewportWidth: 1280,
   viewportHeight: 900,
   screenshotsFolder: 'screenshots',

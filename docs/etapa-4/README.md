@@ -33,8 +33,10 @@ node e2e/node_modules/cypress/bin/cypress install
 npm.cmd --prefix e2e test
 ```
 
-É necessário JDK 21 em JAVA_HOME e Node 24. Cypress está fixado em 15.5.0, com package-lock.json. No Linux com servidor gráfico virtual, execute `xvfb-run -a npm --prefix e2e test`. O executor encerra seu backend ao terminar. A porta padrão é 18080; `BANCARIO_E2E_PORT` permite mudá-la.
+É necessário JDK 21 em JAVA_HOME e Node 24. Cypress está fixado em 15.21.1, com package-lock.json. No Linux com servidor gráfico virtual, execute `xvfb-run -a npm --prefix e2e test`. O executor encerra seu backend ao terminar. A porta padrão é 18080; `BANCARIO_E2E_PORT` permite mudá-la.
 
 ## Ajustes do ambiente
 
 O npm local não executou o postinstall do Cypress automaticamente. Foi executado explicitamente o instalador oficial. A primeira tentativa de E2E ocorreu antes da extração do navegador terminar e falhou por binário incompleto; isso não foi registrado como teste aprovado. A inspeção interativa via ferramenta de navegador ficou indisponível por ausência de navegador conectado; a inspeção visual usa as capturas reais do Cypress.
+
+O primeiro fluxo aprovado usou Cypress 15.5.0. O npm audit do checkout limpo reportou seis alertas em dependências dessa ferramenta de teste. Foi adotada a atualização corretiva compatível 15.21.1 indicada pelo audit, sem mudar o recorte do produto. O resultado da nova auditoria e a repetição do E2E são registrados nas evidências finais. A extração do pacote oficial de navegador atualizado foi feita com o utilitário tar do Windows no cache de testes, para evitar a extração JavaScript lenta observada na instalação anterior.

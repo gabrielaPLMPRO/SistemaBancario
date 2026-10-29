@@ -1,6 +1,6 @@
 # Evidências da entrega
 
-Execuções locais em 29/10/2026, Windows 11, JDK Temurin 21.0.13+9, Maven 3.9.16, Node 24.21.0 e Cypress 15.5.0 com Electron 138 headless. Os resultados são gerados a partir dos relatórios reais por `scripts/registrar-evidencias.py`.
+Execuções locais em 29/10/2026, Windows 11, JDK Temurin 21.0.13+9, Maven 3.9.16, Node 24.21.0 e Cypress 15.21.1. O navegador e sua versão efetiva são capturados pelo executor no JSON de resultados. Os resultados são gerados a partir dos relatórios reais por `scripts/registrar-evidencias.py`.
 
 | Verificação | Resultado |
 | --- | --- |
@@ -22,6 +22,7 @@ Não somar os 12 cenários Cucumber novamente aos 110 testes. Os percentuais do 
 - [mutacoes.xml](mutacoes.xml): cada mutante, operador, localização e teste que o eliminou.
 - [cucumber.json](cucumber.json): passos e resultados dos 12 cenários.
 - [cypress.xml](cypress.xml): resultados reais dos três testes de navegador.
+- [auditoria-npm.json](auditoria-npm.json): zero alertas conhecidos no momento da auditoria após atualizar Cypress; escopo limitado às dependências npm de teste.
 - [Captura desktop](desktop.png) e [captura mobile](mobile.png): interface real após as operações, inspecionada visualmente.
 
 Os relatórios completos navegáveis ficam em `backend/target/` e são publicados como artefatos pela CI. A pasta guarda uma amostra portátil, sem as propriedades de sistema dos XMLs completos do Surefire. Um novo build pode substituir relatórios locais; esta amostra corresponde à execução registrada no JSON.
@@ -37,3 +38,5 @@ O teste diferencial compara legado e novo sistema com estado inicial equivalente
 Foram corrigidos parâmetros de rota sem nomes de reflexão e uma tabela de fixture Cucumber sem conversor. O primeiro E2E tentou usar o navegador ainda em extração; foi reexecutado após a instalação. Capturas desktop exigiram configurar a resolução real do Electron, distinta do viewport da aplicação. Uma prévia local manteve o JAR aberto no Windows e bloqueou `clean`; a prévia foi encerrada e o build limpo repetido. Nenhum teste válido foi retirado para obter aprovação.
 
 O ciclo TDD começou com erro de compilação por serviços ausentes e passou após implementar 24 casos iniciais; os logs completos intermediários estão em `tmp/`. Revisão acadêmica, autoria individual e apresentação ao professor continuam sendo atividades humanas. O status remoto da CI deve ser conferido no PR; a aprovação local não é apresentada como resultado da CI.
+
+A primeira reprodução em checkout limpo confirmou 110 testes Java e 3 Cypress. A diferença binária inicialmente observada entre JARs era somente o POM incluído no pacote, com finais de linha Windows versus LF; os fontes de negócio conferiam. Os POMs locais foram normalizados para seguir `.gitattributes` e o artefato foi reempacotado com os mesmos fontes. A auditoria desse checkout também motivou atualizar Cypress de 15.5.0 para 15.21.1 e repetir a verificação do navegador.

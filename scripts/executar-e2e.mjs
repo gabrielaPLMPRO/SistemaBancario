@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { readFile, mkdtemp, mkdir, open } from 'node:fs/promises';
+import { readFile, writeFile, mkdtemp, mkdir, open } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -29,6 +29,17 @@ try {
   process.env.BANCARIO_FIXTURE_DIR = fixtureDir;
   process.env.BANCARIO_BASE_URL = baseUrl;
   const resultado = await cypress.run({ project: path.join(raiz, 'e2e'), browser: 'electron' });
+  await writeFile(path.join(raiz, 'e2e/results/resumo.json'), JSON.stringify({
+    cypressVersion: resultado.cypressVersion,
+    browserName: resultado.browserName,
+    browserVersion: resultado.browserVersion,
+    nodeVersion: process.version,
+    totalTests: resultado.totalTests,
+    totalPassed: resultado.totalPassed,
+    totalFailed: resultado.totalFailed,
+    totalPending: resultado.totalPending,
+    totalSkipped: resultado.totalSkipped
+  }, null, 2));
   if (resultado.status === 'failed' || resultado.totalFailed !== 0) process.exitCode = 1;
 } finally {
   servidor.kill();

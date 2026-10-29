@@ -20,6 +20,8 @@ O servidor valida IDs e formato dos campos (400), idade e movimentação (422), 
 4. Cucumber detectou que uma DataTable construída manualmente não tinha conversor. A fixture passou a ler as células da tabela diretamente. Nenhum cenário foi retirado para obter aprovação.
 5. A suíte completa passou com 105 testes, zero falhas, erros e ignorados. Os 38 testes antigos permaneceram aprovados via JUnit Vintage; os novos usam Jupiter e Cucumber. JUnit foi atualizado para 4.13.2 no escopo de testes.
 
+Na validação final foram adicionados casos de tipos JSON estritos e comparação de duplicidade/abertura entre versões. O total final passou a 110 testes, todos aprovados, incluindo 12 cenários Cucumber. Esses resultados foram repetidos em checkout limpo.
+
 Uma tentativa de comando Maven no PowerShell separou um argumento `-D` com ponto; os comandos com propriedades foram corrigidos para argumentos entre aspas. Isso foi falha de execução do comando, não um teste RED de negócio.
 
 ## Reprodução
