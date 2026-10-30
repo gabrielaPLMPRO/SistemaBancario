@@ -35,3 +35,10 @@
 - Apoio realizado: atualização corretiva do Cypress para 15.21.1, registro das versões reais do navegador, conferência de evidências e reprodução do commit `cddd0de` em checkout limpo.
 - Validação: 110 testes Java e 3 Cypress aprovados na reprodução; zero alertas npm nessa instalação; fontes conferidos e JAR idêntico byte a byte. Capturas desktop e mobile inspecionadas; links locais conferidos.
 - Publicação: branch e PR preparados para revisão, com status remoto registrado nas evidências somente após consulta à execução real. Revisão acadêmica e autoria individual continuam pendentes de preenchimento pelos alunos.
+
+## 29/10/2026 — Relatório de testes, ferramentas e análise de tempo
+
+- Solicitação: criar `docs/relatorios.md` com contagem de testes, ferramentas e comparação de tempo com fontes confiáveis da internet.
+- Apoio realizado: conferência das evidências locais e consulta a fontes primárias de Peng et al., Cui et al./Management Science e METR, incluindo a atualização de fevereiro de 2026.
+- Validação: contagens de 110 testes Java e 3 Cypress conferidas no JSON; cálculos dos cenários recalculados; links locais verificados. Não houve nova execução da suíte, pois a alteração é documental.
+- Limite: a economia de tempo específica deste projeto não foi medida. Os resultados externos são identificados como resultados de outros estudos; a base de 40 horas e os tempos derivados são simulações, sem atribuição de ganho comprovado à entrega. Revisão acadêmica pelos alunos permanece pendente.

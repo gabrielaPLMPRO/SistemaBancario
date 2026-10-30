@@ -20,4 +20,6 @@ O roteiro local tem 13 páginas chamadas etapas. As pastas de documentação agr
 
 As execuções reais estão em [evidencias/entrega](../evidencias/entrega/README.md). Revisão pelos alunos, identificação de autores e apresentação ao professor são atividades humanas ainda a realizar. Não se confundem com testes automatizados aprovados.
 
+O [relatório de testes, ferramentas e análise de tempo com IA](relatorios.md) consolida as contagens da entrega e compara pesquisas externas, distinguindo resultados medidos de simulações de economia de tempo.
+
 O [registro de fontes](etapa-1/fontes-e-rastreabilidade.md) identifica os trechos locais consultados. Documentação oficial das ferramentas foi usada para configurar o que o roteiro prevê; não substituiu as fontes locais na definição do processo.
